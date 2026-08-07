@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================================
+   🎨 THEME VARIABLES
+   Dark mode is the default. Light mode overrides live in [data-theme="light"].
+   These map to the color tokens in tailwind.config.ts.
+============================================================================ */
+:root {
+  --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Respect users who've asked for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  @apply bg-bg text-ink font-body antialiased;
+}
+
+/* Light mode overrides — toggled via a `light` class on <html> */
+.light body {
+  background-color: #F7F6F3;
+  color: #14171C;
+}
+.light .lm-invert {
+  filter: invert(1);
+}
+
+/* ---- Scrollbar ------------------------------------------------------------ */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: theme('colors.bg.surface2');
+  border-radius: 999px;
+}
+
+/* ---- Focus visibility (accessibility) -------------------------------------- */
+:focus-visible {
+  outline: 2px solid theme('colors.accent.DEFAULT');
+  outline-offset: 3px;
+}
+
+/* ---- Timecode-style eyebrow labels (signature element) --------------------- */
+.timecode {
+  font-family: var(--font-mono);
+  letter-spacing: 0.08em;
+}
+
+/* ---- Section container ------------------------------------------------------ */
+.section {
+  @apply mx-auto w-full max-w-7xl px-6 py-24 md:px-10 md:py-32;
+}
+
+.section-eyebrow {
+  @apply timecode mb-4 inline-flex items-center gap-2 text-xs uppercase tracking-widest text-accent;
+}
+
+/* ---- Glass panel ------------------------------------------------------------ */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ---- Rec-dot pulse used near "live/featured" indicators --------------------- */
+.rec-dot {
+  box-shadow: 0 0 0 0 rgba(242, 166, 90, 0.6);
+  animation: rec-pulse 2s infinite;
+}
+@keyframes rec-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(242, 166, 90, 0.55); }
+  70% { box-shadow: 0 0 0 10px rgba(242, 166, 90, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(242, 166, 90, 0); }
+}
+
+/* ---- Hero heading gradient-pan animation ------------------------------------ */
+@keyframes gradient-pan {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
