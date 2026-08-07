@@ -23,7 +23,20 @@ tagline: 'YouTube & Faceless Video Editor',
 
   ogImage: '/images/og-image.jpg',
 },
-
+stats: [
+  { label: 'Projects Completed', value: 200, suffix: '+' },
+  { label: 'Happy Clients', value: 30, suffix: '+' },
+  { label: 'Years Experience', value: 1, suffix: '+' },
+  { label: 'Videos Edited', value: 200, suffix: '+' },
+],
+testimonials: [
+    {
+      name: 'Joy',
+      role: 'Agency owner',
+      quote: 'Amazing editing work, highly recommended!',
+      avatar: '',
+    },
+  ],
   // ---- 📞 CONTACT INFO -------------------------------------------------
   contact: {
   email: 'mehedihasansojib8599@gmail.com',

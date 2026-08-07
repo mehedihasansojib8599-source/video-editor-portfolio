@@ -33,7 +33,7 @@ export function generateMetadata({
     openGraph: {
       title: project.title,
       description: project.description,
-      images: [{ url: project.coverImage || project.thumbnail }],
+      images: [{ url: project.coverImage || project.thumbnail || '' }],
     },
   };
 }
