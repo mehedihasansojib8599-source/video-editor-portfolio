@@ -25,6 +25,9 @@ function extractYouTubeId(src: string): string {
   const embedMatch = trimmed.match(/youtube\.com\/embed\/([^?&/]+)/);
   if (embedMatch) return embedMatch[1];
 
+  const shortsMatch = trimmed.match(/youtube\.com\/shorts\/([^?&/]+)/);
+  if (shortsMatch) return shortsMatch[1];
+
   return trimmed;
 }
 
@@ -40,6 +43,14 @@ function extractDriveId(src: string): string {
 }
 
 /* -------------------------------------------------------------------------- */
+/*                              FACEBOOK EMBED                                */
+/* -------------------------------------------------------------------------- */
+function getFacebookEmbedUrl(videoUrl: string): string {
+  const encoded = encodeURIComponent(videoUrl.trim());
+  return `https://www.facebook.com/plugins/video.php?href=${encoded}&show_text=false&t=0`;
+}
+
+/* -------------------------------------------------------------------------- */
 /*                              EMBED URL                                     */
 /* -------------------------------------------------------------------------- */
 
@@ -49,7 +60,7 @@ function getEmbedUrl(video: NonNullable<Project['video']>): string {
       const id = extractYouTubeId(video.src);
       return (
         `https://www.youtube.com/embed/${id}` +
-        `?autoplay=1&rel=0&modestbranding=1`
+        `?autoplay=1&rel=0&modestbranding=1&playsinline=1`
       );
     }
     case 'drive': {
@@ -59,6 +70,9 @@ function getEmbedUrl(video: NonNullable<Project['video']>): string {
     case 'vimeo': {
       return `https://player.vimeo.com/video/${video.src}?autoplay=1`;
     }
+    case 'facebook': {
+      return getFacebookEmbedUrl(video.src);
+    }
     default:
       return video.src;
   }
@@ -67,10 +81,6 @@ function getEmbedUrl(video: NonNullable<Project['video']>): string {
 /* -------------------------------------------------------------------------- */
 /*                    AUTO YOUTUBE THUMBNAIL                                  */
 /* -------------------------------------------------------------------------- */
-// If a project doesn't have a manually set thumbnail, and the video is a
-// YouTube video, we pull YouTube's own thumbnail automatically using the
-// video ID. maxresdefault is the highest quality (1280x720); YouTube
-// doesn't generate it for every video, so we fall back to hqdefault.
 function getYouTubeThumbnail(videoId: string): string {
   return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
 }
@@ -85,7 +95,6 @@ function useResolvedThumbnail(project: Project): string | null {
   );
 
   useEffect(() => {
-    // If a manual thumbnail was already provided, keep using it.
     if (project.thumbnail) {
       setThumb(project.thumbnail);
       return;
@@ -95,9 +104,6 @@ function useResolvedThumbnail(project: Project): string | null {
       const id = extractYouTubeId(project.video.src);
       const maxRes = getYouTubeThumbnail(id);
 
-      // Check if maxresdefault actually exists (YouTube returns a tiny
-      // placeholder image, ~120px wide, when it doesn't). If not, fall
-      // back to hqdefault, which always exists.
       const img = new window.Image();
       img.onload = () => {
         if (img.naturalWidth > 120) {
@@ -146,6 +152,8 @@ function useFreezeBackground(locked: boolean) {
 /* -------------------------------------------------------------------------- */
 /*                    VIDEO MODAL (rendered via portal)                       */
 /* -------------------------------------------------------------------------- */
+// Only used for the YOUTUBE (non-reel) / DRIVE / VIMEO card variant —
+// reel-style cards (mp4 / facebook / displayAsReel) play inline instead.
 function VideoModal({
   project,
   thumbnail,
@@ -238,7 +246,13 @@ export function PortfolioCard({
   const [isPlaying, setIsPlaying] = useState(false);
   const thumbnail = useResolvedThumbnail(project);
 
-  const isReel = project.video?.type === 'mp4';
+  // Reels: mp4 (native <video>), facebook (iframe), and anything flagged
+  // with displayAsReel (e.g. a YouTube Short) all play inline in the card,
+  // toggled by clicking the card — no fullscreen modal.
+  const isReel =
+    project.video?.type === 'mp4' ||
+    project.video?.type === 'facebook' ||
+    project.displayAsReel === true;
 
   if (!project.video) {
     return null;
@@ -247,10 +261,12 @@ export function PortfolioCard({
   const closeModal = () => setIsPlaying(false);
 
   /* ------------------------------------------------------------------------ */
-  /*                                REEL                                      */
+  /*                    REEL (mp4 / facebook / displayAsReel)                 */
   /* ------------------------------------------------------------------------ */
 
   if (isReel) {
+    const videoType = project.video.type;
+
     return (
       <motion.div
         initial={{ opacity: 0, y: 24 }}
@@ -259,16 +275,63 @@ export function PortfolioCard({
         transition={{ duration: 0.5, delay: (index % 6) * 0.06 }}
         className="group relative overflow-hidden rounded-2xl bg-bg-surface"
       >
-        <div className="relative aspect-[9/16] overflow-hidden bg-black">
-          <video
-            src={project.video.src}
-            controls
-            playsInline
-            preload="metadata"
-            muted
-            loop
-            className="absolute inset-0 h-full w-full object-contain"
-          />
+        <button
+          type="button"
+          onClick={() => setIsPlaying((prev) => !prev)}
+          className="relative block aspect-[9/16] w-full overflow-hidden bg-black"
+          aria-label={isPlaying ? `Pause ${project.title}` : `Play ${project.title}`}
+        >
+          {isPlaying ? (
+            videoType === 'mp4' ? (
+              <video
+                src={project.video.src}
+                autoPlay
+                controls
+                playsInline
+                preload="metadata"
+                className="absolute inset-0 h-full w-full object-contain"
+              />
+            ) : (
+              // facebook, youtube, vimeo, drive — any iframe-based reel
+              <iframe
+                key={project.id}
+                src={getEmbedUrl(project.video)}
+                title={project.title}
+                allow="autoplay; fullscreen; encrypted-media; picture-in-picture; web-share"
+                allowFullScreen
+                loading="eager"
+                scrolling="no"
+                referrerPolicy="strict-origin-when-cross-origin"
+                className="absolute inset-0 h-full w-full border-0"
+                onClick={(e) => e.stopPropagation()}
+              />
+            )
+          ) : thumbnail ? (
+            <>
+              <Image
+                src={thumbnail}
+                alt={project.title}
+                fill
+                unoptimized
+                className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+              />
+              <div className="absolute inset-0 bg-black/20 transition-all duration-300 group-hover:bg-black/35" />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-orange-400 to-yellow-300 text-black shadow-[0_0_35px_-4px_rgba(249,115,22,0.8)] transition-transform duration-300 group-hover:scale-110">
+                  <Play size={25} fill="currentColor" />
+                </div>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="absolute inset-0 bg-black" />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-orange-400 to-yellow-300 text-black shadow-[0_0_35px_-4px_rgba(249,115,22,0.8)] transition-transform duration-300 group-hover:scale-110">
+                  <Play size={25} fill="currentColor" />
+                </div>
+              </div>
+            </>
+          )}
 
           {project.featured && (
             <span className="absolute left-3 top-3 z-10 rounded-full bg-gradient-to-r from-orange-400 to-yellow-300 px-3 py-1 text-[10px] font-semibold uppercase text-black">
@@ -281,7 +344,7 @@ export function PortfolioCard({
               {project.duration}
             </span>
           )}
-        </div>
+        </button>
 
         <div className="p-5">
           <div className="mb-2 flex items-center justify-between">
@@ -302,7 +365,7 @@ export function PortfolioCard({
   }
 
   /* ------------------------------------------------------------------------ */
-  /*                         YOUTUBE / DRIVE                                  */
+  /*                         YOUTUBE / DRIVE / VIMEO                          */
   /* ------------------------------------------------------------------------ */
 
   return (

@@ -34,8 +34,21 @@ testimonials: [
       name: 'Joy',
       role: 'Agency owner',
       quote: 'Amazing editing work, highly recommended!',
-      avatar: '',
+      avatar: '/images/joy.png',
     },
+    {
+      name: 'Dip',
+      role: 'Client',
+      quote: 'The work turned out really great!',
+      avatar: '/images/dip.png',
+    },
+     {
+      name: 'Amzad Hossain Rana',
+      role: 'YouTube Viewer client',
+      quote: 'Great job!',
+      avatar: '/images/amzad.jpg',
+    },
+    
   ],
   // ---- 📞 CONTACT INFO -------------------------------------------------
   contact: {

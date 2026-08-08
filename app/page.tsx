@@ -26,13 +26,15 @@ export default function HomePage() {
       <Software />
       <PortfolioSection />
       <Skills />
-      <PremiumCTA />
-      <Testimonials />
+      
+      
       <Experience />
       <Process />
 
       <FAQ />
       <Contact />
+    
+      <Testimonials />
       <PremiumCTA />
     </>
   );

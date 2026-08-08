@@ -28,6 +28,13 @@
 // HOW TO ADD A NEW CATEGORY:
 //   Add the new category name as a string to `categories` at the bottom of
 //   this file, then use that exact string in a project's `category` field.
+//
+// HOW TO SEND A PROJECT TO THE "CINEMATIC REELS" SECTION:
+//   Reels are anything with video.type "mp4" or "facebook" — these always
+//   show in the Reels section automatically. If you want a "youtube" (or
+//   "vimeo"/"drive") project to ALSO show in the Reels section instead of
+//   the normal grid — for example a YouTube Short — set `displayAsReel: true`
+//   on that project. Everything else stays in the normal grid as usual.
 // ============================================================================
 
 // ---- FIELD GUIDE -----------------------------------------------------------
@@ -48,11 +55,14 @@
 // featured      true/false — show in the "Featured" homepage section
 // published     true/false — false hides it from the whole site
 // platform      where the final video lives, e.g. "YouTube", "Instagram"
+// displayAsReel true/false — force a youtube/vimeo/drive project into the
+//               "Cinematic Reels" section (e.g. a YouTube Short). Optional —
+//               mp4/facebook videos go there automatically without this.
 // beforeImage / afterImage   optional color-grading before/after slider images
 //
 // VIDEO GUIDE — set `video.type` to one of:
 //   "mp4"        video.src = direct .mp4 URL
-//   "youtube"    video.src = YouTube video ID (the part after v=)
+//   "youtube"    video.src = full YouTube URL (watch, youtu.be, or /shorts/)
 //   "vimeo"      video.src = Vimeo video ID
 //   "drive"      video.src = Google Drive file ID
 //   "instagram"  video.src = full Instagram reel URL
@@ -113,6 +123,10 @@ export interface Project {
 
   platform: string;
 
+  /** Force this project into the "Cinematic Reels" section even though its
+   *  video.type is youtube/vimeo/drive (mp4/facebook go there automatically). */
+  displayAsReel?: boolean;
+
   beforeImage?: string;
   afterImage?: string;
 
@@ -123,6 +137,113 @@ export interface Project {
 }
 
 export const projects: Project[] = [
+  {
+    id: 'patricia-marsh-tax-relief-scam',
+
+    title: 'The $6.2M Tax Relief Scam Exposed',
+
+    description:
+      'A documentary-style faceless video exposing how Patricia Marsh and Liberty Tax Resolution Group allegedly collected millions in upfront fees while providing little to no legitimate IRS debt negotiation services.',
+
+    longDescription:
+      'This investigative documentary explores the rise and collapse of Liberty Tax Resolution Group. Using cinematic storytelling, stock footage, motion graphics, AI voiceover, and documentary editing techniques, the video reveals how more than 1,400 clients were allegedly misled into paying millions of dollars for tax relief services that rarely materialized.',
+
+    thumbnail: '/images/thumbnail3.png',
+
+    coverImage: '/images/cover3.png',
+    video: {
+      type: 'drive',
+      src: '1G0uzu185WtYIUU6rsZrhSySnmhtxlcu7',
+      // 👉 Same note as above — adjust if this one crops too.
+      aspect: '16 / 9',
+    },
+
+    category: 'Documentary',
+
+    client: 'Creative Agency',
+
+    software: ['Adobe Premiere Pro'],
+
+    duration: '19:02',
+
+    date: '2026-08-01',
+
+    tags: [
+      'Documentary',
+      'Faceless',
+      'Crime',
+      'Scam',
+      'Bodycam',
+      'Storytelling',
+      'YouTube',
+    ],
+
+    featured: true,
+
+    published: true,
+
+    platform: 'Google Drive',
+    myRole: [
+      'Video Editing',
+      'Storytelling',
+      'Motion Graphics',
+      'Sound Design',
+    ],
+
+    clientProvided: ['Script', 'AI Voiceover'],
+
+    workflow: [
+      'Client Script',
+      'AI Voiceover',
+      'Footage Research',
+      'Editing',
+      'Final Delivery',
+    ],
+  },
+  {
+    id: 'kuakata-tour-2026',
+    title: 'cinamatic travel reel',
+    category: 'Reels',
+    description:
+      'A cinematic travel reel showcasing Kuakata with smooth transitions, cinematic color grading, drone shots, and storytelling.',
+    client: 'Personal Project',
+    software: ['Adobe Premiere Pro'],
+    duration: '0:30',
+    date: '2026-08-08',
+    tags: ['Travel', 'Cinematic', 'Reel', 'Color Grading'],
+    featured: true,
+    published: true,
+    platform: 'Facebook',
+    video: {
+      type: 'facebook',
+      src: 'https://www.facebook.com/reel/2120239202085414/',
+      aspect: '9 / 16',
+    },
+  },
+
+  {
+    id: 'Top-5-most-dangerous-animals1',
+    title: 'The World’s Most Dangerous Animals',
+    description:
+      'A fast-paced 52-second youtube short showcasing the top 5 most dangerous animals in the world with cinematic transitions, color grading, and motion graphics.',
+    category: 'Short Form',
+    client: 'Personal Project',
+    software: ['Adobe Premiere Pro', 'Adobe After Effects'],
+    duration: '0:52',
+    date: '2026-08-08',
+    tags: ['YouTube', 'Shorts', 'Reel'],
+    featured: true,
+    published: true,
+    platform: 'YouTube',
+    displayAsReel: true,
+    
+    video: {
+      type: 'youtube',
+      src: 'https://youtube.com/shorts/WVAvdh_6oz8?si=nE47eD4XTsAFFqF_',
+      aspect: '9 / 16',
+    },
+  },
+
   {
     id: 'youtube-1',
     title: 'YouTube Storytelling Edit',
@@ -213,6 +334,75 @@ export const projects: Project[] = [
       'Final Delivery',
     ],
   },
+  {
+  id: 'koenigsegg-blows-up-entire-car-market',
+
+  title:
+    'Koenigsegg Blows Up The Entire Car Market With This BIG ANNOUNCEMENT',
+
+  description:
+    'A faceless automotive documentary exploring how Koenigsegg challenged the automotive industry with its groundbreaking electric motor and next-generation combustion engine.',
+
+  longDescription:
+    'A documentary-style faceless YouTube video edited in Adobe Premiere Pro. The project combines storytelling, stock footage, B-roll, motion graphics, captions, cinematic pacing, and sound design to explore Koenigsegg’s Dark Matter electric motor, camless combustion technology, and the company’s impact on the future of automotive engineering.',
+
+  thumbnail: '/images/car.png',
+
+  coverImage: '/images/car.png',
+
+  video: {
+    type: 'drive',
+    src: '1i9VidEHHT0SczOSzxvMPogo4Kv5M9xxX',
+    aspect: '16 / 9',
+  },
+
+  category: 'Automotive Documentary',
+
+  client: 'Creative Agency',
+
+  software: ['Adobe Premiere Pro'],
+
+  duration: '4:51',
+
+  date: '2026-08-08',
+
+  tags: [
+    'Automotive',
+    'Documentary',
+    'Faceless',
+    'Koenigsegg',
+    'Car Technology',
+    'Storytelling',
+    'Premiere Pro',
+  ],
+
+  featured: true,
+
+  published: true,
+
+  platform: 'Google Drive',
+
+  myRole: [
+    'Video Editing',
+    'Storytelling',
+    'Motion Graphics',
+    'Sound Design',
+  ],
+
+  clientProvided: [
+    'Script',
+    'AI Voiceover',
+    'AI Video',
+  ],
+
+  workflow: [
+    'Client Script',
+    'AI Voiceover',
+    'Footage Research',
+    'Editing',
+    'Final Delivery',
+  ],
+},
 
   {
     id: 'perfect-family-house',
@@ -329,6 +519,7 @@ export const projects: Project[] = [
   ],
 },
 
+
   {
     id: 'podcast-edit',
 
@@ -435,69 +626,7 @@ export const projects: Project[] = [
       'Final Delivery',
     ],
   },
-  {
-    id: 'patricia-marsh-tax-relief-scam',
-
-    title: 'The $6.2M Tax Relief Scam Exposed',
-
-    description:
-      'A documentary-style faceless video exposing how Patricia Marsh and Liberty Tax Resolution Group allegedly collected millions in upfront fees while providing little to no legitimate IRS debt negotiation services.',
-
-    longDescription:
-      'This investigative documentary explores the rise and collapse of Liberty Tax Resolution Group. Using cinematic storytelling, stock footage, motion graphics, AI voiceover, and documentary editing techniques, the video reveals how more than 1,400 clients were allegedly misled into paying millions of dollars for tax relief services that rarely materialized.',
-
-    thumbnail: '/images/thumbnail3.png',
-
-    coverImage: '/images/cover3.png',
-    video: {
-      type: 'drive',
-      src: '1G0uzu185WtYIUU6rsZrhSySnmhtxlcu7',
-      // 👉 Same note as above — adjust if this one crops too.
-      aspect: '16 / 9',
-    },
-
-    category: 'Documentary',
-
-    client: 'Creative Agency',
-
-    software: ['Adobe Premiere Pro'],
-
-    duration: '19:02',
-
-    date: '2026-08-01',
-
-    tags: [
-      'Documentary',
-      'Faceless',
-      'Crime',
-      'Scam',
-      'Bodycam',
-      'Storytelling',
-      'YouTube',
-    ],
-
-    featured: true,
-
-    published: true,
-
-    platform: 'Google Drive',
-    myRole: [
-      'Video Editing',
-      'Storytelling',
-      'Motion Graphics',
-      'Sound Design',
-    ],
-
-    clientProvided: ['Script', 'AI Voiceover'],
-
-    workflow: [
-      'Client Script',
-      'AI Voiceover',
-      'Footage Research',
-      'Editing',
-      'Final Delivery',
-    ],
-  },
+ 
   {
     id: 'when-disrespectful-celebrities-get-destroyed-by-kevin-hart',
 
@@ -565,75 +694,6 @@ export const projects: Project[] = [
   },
 
 
-  {
-    id: 'top-5-most-dangerous-animals',
-
-    title: 'The World’s Most Dangerous Animals',
-
-    description:
-      'A fast-paced 52-second Facebook reel showcasing the top 5 most dangerous animals in the world with cinematic transitions, color grading, and motion graphics.',
-
-    longDescription:
-      'A 52-second reel edited in Adobe Premiere Pro/Adobe After Effect, featuring smooth transitions, color grading, cinematic pacing, motion grafix and immersive storytelling.',
-
-    category: 'Dangerous Animals',
-
-    client: 'Personal Project',
-
-    date: '2026-08-05',
-
-    duration: '0:52',
-
-    featured: true,
-
-    published: true,
-    platform: 'Facebook',
-
-    tags: ['most dangerous animals', 'Cinematic', 'Premiere Pro', 'After Effect', 'Color Grading', 'Reel'],
-
-    software: ['Adobe Premiere Pro/After Effects'],
-
-    video: {
-      type: 'mp4',
-      src: '/videos/animals.mp4',
-      aspect: '9 / 16', // vertical reel — update to "16 / 9" if it's landscape
-    },
-  },
-
-  {
-    id: 'kuakata-tour-2026',
-
-    title: 'Kuakata Tour 2026',
-
-    description:
-      'A cinematic travel reel showcasing Kuakata with smooth transitions, cinematic color grading, drone shots, and storytelling.',
-
-    longDescription:
-      'A 32-second cinematic travel reel edited in Adobe Premiere Pro, featuring smooth transitions, color grading, cinematic pacing, and immersive storytelling.',
-
-    category: 'Travel',
-
-    client: 'Personal Project',
-
-    date: '2026-08-05',
-
-    duration: '0:32',
-
-    featured: true,
-
-    published: true,
-    platform: 'Facebook',
-
-    tags: ['Travel', 'Cinematic', 'Premiere Pro', 'Color Grading', 'Reel'],
-
-    software: ['Adobe Premiere Pro/After Effects'],
-
-    video: {
-      type: 'mp4',
-      src: '/videos/kuakata-tour-2026.mp4',
-      aspect: '9 / 16', // vertical reel — update to "16 / 9" if it's landscape
-    },
-  },
   
 ];
 
@@ -655,6 +715,7 @@ export const categories: string[] = [
   'Long Form',
   'Motion Graphics',
   'Color Grading',
+  'Reels',
   'facebook',
 ];
 
