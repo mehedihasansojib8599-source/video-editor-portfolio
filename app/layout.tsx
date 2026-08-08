@@ -1,4 +1,4 @@
-import type { Metadata, Viewport } from 'next';
+import type { Metadata } from 'next';
 import { Space_Grotesk, Inter, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import { siteConfig } from '@/data/site-config';
@@ -50,17 +50,14 @@ export const metadata: Metadata = {
   },
 };
 
-// ---- FORCE DESKTOP LAYOUT, LOCKED (no pinch-zoom) --------------------------
-// width: 1280 makes every browser — including mobile — treat the page as if
-// the screen is 1280 CSS pixels wide. This makes Tailwind's md:/lg: classes
-// activate exactly like on a real desktop, giving the identical layout.
-// The browser then auto-scales that 1280px layout down to fit the real,
-// narrower screen. userScalable: false locks that scale so the user can't
-// pinch-zoom in/out — it stays fixed and stable at "fit to screen".
-export const viewport: Viewport = {
-  width: 1280,
-  userScalable: false,
-};
+// NOTE: no `export const viewport` here — Next.js's typed Viewport API
+// doesn't accept the "initial-scale=0.001" shrink-to-fit string, so we set
+// the <meta name="viewport"> tag manually below instead. That combination
+// (width=1280 + a tiny initial-scale) is a long-standing cross-browser
+// trick that forces ALL mobile browsers — including ones that otherwise
+// ignore a large fixed width — to actually shrink the whole 1280px desktop
+// layout down until it fits the real screen width. maximum-scale/
+// user-scalable then lock it there so it stays stable.
 
 export default function RootLayout({
   children,
@@ -69,6 +66,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark scroll-smooth">
+      <head>
+        <meta
+          name="viewport"
+          content="width=1280, initial-scale=0.001, maximum-scale=1, user-scalable=no"
+        />
+      </head>
       <body
         className={`${displayFont.variable} ${bodyFont.variable} ${monoFont.variable} font-body`}
       >
