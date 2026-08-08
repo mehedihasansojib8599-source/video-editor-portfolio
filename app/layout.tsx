@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Space_Grotesk, Inter, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import { siteConfig } from '@/data/site-config';
@@ -43,12 +43,24 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: siteConfig.seo.title,
     description: siteConfig.seo.description,
-   
+
     images: [siteConfig.seo.ogImage],
   },
   icons: {
     icon: '/favicon.ico',
   },
+};
+
+// ---- FORCE DESKTOP LAYOUT ON ALL SCREEN SIZES ------------------------------
+// Instead of "width=device-width" (which lets mobile browsers use their real,
+// narrow screen width and triggers responsive breakpoints), we pin the
+// viewport to a fixed desktop width. Mobile browsers then render the full
+// desktop layout and automatically zoom/scale it down to fit the phone
+// screen — so the design looks visually identical everywhere, just smaller
+// on small screens, instead of reflowing into a different mobile layout.
+export const viewport: Viewport = {
+  width: 1280,
+  userScalable: true,
 };
 
 export default function RootLayout({
