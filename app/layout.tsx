@@ -9,6 +9,7 @@ import { LoadingScreen } from '@/components/loading-screen';
 import { CustomCursor } from '@/components/custom-cursor';
 import { Navbar } from '@/components/navbar';
 import { Footer } from '@/components/footer';
+import { DesktopLock } from '@/components/desktop-lock';
 
 const displayFont = Space_Grotesk({
   subsets: ['latin'],
@@ -26,7 +27,6 @@ const monoFont = JetBrains_Mono({
   weight: ['400', '500'],
 });
 
-// ---- SEO / METADATA: edit siteConfig.seo in data/site-config.ts ------------
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.seo.url),
   title: siteConfig.seo.title,
@@ -51,16 +51,13 @@ export const metadata: Metadata = {
   },
 };
 
-// ---- FORCE DESKTOP LAYOUT ON ALL SCREEN SIZES ------------------------------
-// Instead of "width=device-width" (which lets mobile browsers use their real,
-// narrow screen width and triggers responsive breakpoints), we pin the
-// viewport to a fixed desktop width. Mobile browsers then render the full
-// desktop layout and automatically zoom/scale it down to fit the phone
-// screen — so the design looks visually identical everywhere, just smaller
-// on small screens, instead of reflowing into a different mobile layout.
+// ---- Real device width + no pinch-zoom — our own JS/CSS scaling in
+// DesktopLock handles fitting the fixed desktop layout to the screen, so we
+// don't want the browser's own zoom fighting with it.
 export const viewport: Viewport = {
-  width: 1280,
-  userScalable: true,
+  width: 'device-width',
+  initialScale: 1,
+  userScalable: false,
 };
 
 export default function RootLayout({
@@ -77,9 +74,11 @@ export default function RootLayout({
           <LoadingScreen />
           <CustomCursor />
           <ScrollProgress />
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
+          <DesktopLock>
+            <Navbar />
+            <main>{children}</main>
+            <Footer />
+          </DesktopLock>
           <BackToTop />
         </ThemeProvider>
       </body>
