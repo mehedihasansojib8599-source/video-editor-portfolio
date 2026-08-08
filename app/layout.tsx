@@ -9,7 +9,6 @@ import { LoadingScreen } from '@/components/loading-screen';
 import { CustomCursor } from '@/components/custom-cursor';
 import { Navbar } from '@/components/navbar';
 import { Footer } from '@/components/footer';
-import { DesktopLock } from '@/components/desktop-lock';
 
 const displayFont = Space_Grotesk({
   subsets: ['latin'],
@@ -51,12 +50,15 @@ export const metadata: Metadata = {
   },
 };
 
-// ---- Real device width + no pinch-zoom — our own JS/CSS scaling in
-// DesktopLock handles fitting the fixed desktop layout to the screen, so we
-// don't want the browser's own zoom fighting with it.
+// ---- FORCE DESKTOP LAYOUT, LOCKED (no pinch-zoom) --------------------------
+// width: 1280 makes every browser — including mobile — treat the page as if
+// the screen is 1280 CSS pixels wide. This makes Tailwind's md:/lg: classes
+// activate exactly like on a real desktop, giving the identical layout.
+// The browser then auto-scales that 1280px layout down to fit the real,
+// narrower screen. userScalable: false locks that scale so the user can't
+// pinch-zoom in/out — it stays fixed and stable at "fit to screen".
 export const viewport: Viewport = {
-  width: 'device-width',
-  initialScale: 1,
+  width: 1280,
   userScalable: false,
 };
 
@@ -74,11 +76,9 @@ export default function RootLayout({
           <LoadingScreen />
           <CustomCursor />
           <ScrollProgress />
-          <DesktopLock>
-            <Navbar />
-            <main>{children}</main>
-            <Footer />
-          </DesktopLock>
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
           <BackToTop />
         </ThemeProvider>
       </body>
