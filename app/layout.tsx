@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Space_Grotesk, Inter, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import { siteConfig } from '@/data/site-config';
@@ -50,14 +50,27 @@ export const metadata: Metadata = {
   },
 };
 
-// NOTE: no `export const viewport` here — Next.js's typed Viewport API
-// doesn't accept the "initial-scale=0.001" shrink-to-fit string, so we set
-// the <meta name="viewport"> tag manually below instead. That combination
-// (width=1280 + a tiny initial-scale) is a long-standing cross-browser
-// trick that forces ALL mobile browsers — including ones that otherwise
-// ignore a large fixed width — to actually shrink the whole 1280px desktop
-// layout down until it fits the real screen width. maximum-scale/
-// user-scalable then lock it there so it stays stable.
+// ---- DESKTOP-ONLY LAYOUT ON MOBILE -----------------------------------------
+// This site intentionally does NOT reflow into a separate mobile layout.
+// Instead, the whole page is always laid out at a fixed 1280px desktop
+// width, and this `viewport` export forces every mobile browser to shrink
+// that entire 1280px layout down (via initialScale) until it fits the real
+// screen width — the same effect as opening the desktop site and zooming
+// out. maximumScale + userScalable lock it there so it stays stable and
+// the person can't accidentally pinch-zoom it back to actual desktop size.
+//
+// Using Next.js's typed `viewport` export (instead of a manual <meta> tag
+// in <head>) matters here: if you hand-write the meta tag, Next.js *also*
+// auto-generates its own default viewport tag, and having two conflicting
+// viewport tags makes mobile browsers behave inconsistently. Exporting
+// `viewport` here is what tells Next "I'm handling this" so it only emits
+// the one tag below.
+export const viewport: Viewport = {
+  width: 1280,
+  initialScale: 0.001,
+  maximumScale: 1,
+  userScalable: false,
+};
 
 export default function RootLayout({
   children,
@@ -66,12 +79,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark scroll-smooth">
-      <head>
-        <meta
-          name="viewport"
-          content="width=1280, initial-scale=0.001, maximum-scale=1, user-scalable=no"
-        />
-      </head>
       <body
         className={`${displayFont.variable} ${bodyFont.variable} ${monoFont.variable} font-body`}
       >
