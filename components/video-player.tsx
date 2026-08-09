@@ -47,7 +47,7 @@ export function VideoPlayer({
           <iframe
             src={driveEmbedUrl(video.src)}
             title={title}
-            allow="autoplay"
+            allow="autoplay; encrypted-media; fullscreen"
             allowFullScreen
             className="absolute inset-0 h-full w-full"
           />
