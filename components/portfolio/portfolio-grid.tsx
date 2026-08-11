@@ -159,7 +159,7 @@ export function PortfolioGrid({
               {/* Reel cards */}
               <motion.div
                 layout
-                className="relative grid grid-cols-2 gap-4 sm:gap-8 lg:grid-cols-4"
+                className="relative grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-8 lg:grid-cols-4"
               >
                 {reels.map((project, i) => {
                   const colorSets = [
