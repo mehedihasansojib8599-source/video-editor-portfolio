@@ -60,9 +60,9 @@ const stats = [
 export function Process() {
   return (
     <section className="section relative overflow-hidden">
-      {/* ambient glow */}
-      <div className="pointer-events-none absolute -left-40 top-0 h-[420px] w-[420px] rounded-full bg-orange-500/10 blur-[130px]" />
-      <div className="pointer-events-none absolute -right-40 top-1/3 h-[420px] w-[420px] rounded-full bg-teal-400/10 blur-[130px]" />
+      {/* ambient glow — smaller/softer on mobile so it doesn't overpower a narrow screen */}
+      <div className="pointer-events-none absolute -left-40 top-0 h-64 w-64 rounded-full bg-orange-500/10 blur-[70px] sm:h-[420px] sm:w-[420px] sm:blur-[130px]" />
+      <div className="pointer-events-none absolute -right-40 top-1/3 h-64 w-64 rounded-full bg-teal-400/10 blur-[70px] sm:h-[420px] sm:w-[420px] sm:blur-[130px]" />
 
       <div className="relative">
         {/* ---- section heading ---- */}
@@ -71,7 +71,7 @@ export function Process() {
           04 — PROCESS
         </span>
 
-        <h2 className="mt-6 max-w-xl font-display text-3xl font-medium tracking-tight md:text-4xl">
+        <h2 className="mt-6 max-w-xl font-display text-2xl font-medium tracking-tight sm:text-3xl md:text-4xl">
           <span className="text-white">How I bring your</span>{' '}
           <span className="bg-gradient-to-r from-orange-300 via-amber-200 to-teal-300 bg-clip-text text-transparent">
             vision to life.
@@ -83,16 +83,7 @@ export function Process() {
           final delivery — built for consistency and sound design.
         </p>
 
-        {/* ---- animated journey line ---- */}
-        {/* FIX: dots now sit in a grid that exactly matches the cards
-            grid below (grid-cols-5 gap-5), each dot centered inside its
-            own column via `justify-center` — so every dot lines up
-            perfectly above the center of its corresponding card.
-            The connecting line is drawn per-cell and bleeds half a gap
-            (0.625rem = half of gap-5) into the gutter on either side,
-            so consecutive segments meet exactly in the middle of the
-            gap. The result is one continuous line running precisely
-            from the center of card 01 to the center of card 05. */}
+        {/* ---- animated journey line (desktop/lg only, unchanged) ---- */}
         <div className="relative mt-14 hidden grid-cols-5 gap-5 lg:grid">
           {steps.map((step, i) => (
             <div
@@ -128,7 +119,7 @@ export function Process() {
         </div>
 
         {/* ---- steps grid ---- */}
-        <div className="relative mt-8 grid grid-cols-1 gap-5 rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.04] to-transparent p-2 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="relative mt-6 grid grid-cols-1 gap-4 rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.04] to-transparent p-2 sm:mt-8 sm:grid-cols-2 sm:gap-5 lg:grid-cols-5">
           {steps.map((step, i) => {
             const Icon = step.icon;
             return (
@@ -143,24 +134,17 @@ export function Process() {
                   'hover:from-orange-400/50 hover:to-teal-400/50 hover:shadow-[0_0_30px_-10px_rgba(245,166,35,0.4)]'
                 )}
               >
-                <div className="relative flex h-full flex-col rounded-2xl bg-[#0c0c0c] p-6">
-                  {/* FIX: removed the stray inter-card connector line/dot
-                      (`absolute -right-5 top-1/2 ...`) that was rendering
-                      as a floating circle/line inside the cards (visible
-                      on card 04 in the screenshot). The top journey line
-                      above already connects the steps, so this was
-                      redundant and misaligned. */}
-
-                  <div className="mb-5 flex items-center justify-between">
+                <div className="relative flex h-full flex-col rounded-2xl bg-[#0c0c0c] p-5 sm:p-6">
+                  <div className="mb-4 flex items-center justify-between sm:mb-5">
                     <span className="font-mono text-xs tracking-wider text-orange-400">
                       {step.number}
                     </span>
-                    <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-gradient-to-br from-orange-400/10 to-teal-400/10 text-orange-300 transition-all duration-300 group-hover:border-orange-400/30 group-hover:text-teal-300">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-gradient-to-br from-orange-400/10 to-teal-400/10 text-orange-300 transition-all duration-300 group-hover:border-orange-400/30 group-hover:text-teal-300 sm:h-10 sm:w-10">
                       <Icon size={18} strokeWidth={1.75} />
                     </span>
                   </div>
 
-                  <h3 className="mb-2 font-display text-lg text-white">
+                  <h3 className="mb-2 font-display text-base text-white sm:text-lg">
                     {step.title}
                   </h3>
                   <p className="text-sm leading-relaxed text-white/55">
@@ -173,7 +157,7 @@ export function Process() {
         </div>
 
         {/* ---- stats bar ---- */}
-        <div className="mt-16 grid grid-cols-2 gap-8 border-t border-white/10 pt-12 sm:grid-cols-4">
+        <div className="mt-10 grid grid-cols-2 gap-6 border-t border-white/10 pt-8 sm:mt-16 sm:gap-8 sm:pt-12 sm:grid-cols-4">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
@@ -183,10 +167,10 @@ export function Process() {
               transition={{ duration: 0.4, delay: i * 0.08 }}
               className="group"
             >
-              <p className="bg-gradient-to-br from-orange-300 via-amber-200 to-teal-300 bg-clip-text font-display text-4xl font-semibold tracking-tight text-transparent transition-all duration-300 group-hover:from-orange-400 group-hover:to-teal-400 md:text-5xl">
+              <p className="bg-gradient-to-br from-orange-300 via-amber-200 to-teal-300 bg-clip-text font-display text-3xl font-semibold tracking-tight text-transparent transition-all duration-300 group-hover:from-orange-400 group-hover:to-teal-400 sm:text-4xl md:text-5xl">
                 {stat.value}
               </p>
-              <p className="mt-2 text-sm text-white/50">{stat.label}</p>
+              <p className="mt-1.5 text-xs text-white/50 sm:mt-2 sm:text-sm">{stat.label}</p>
             </motion.div>
           ))}
         </div>

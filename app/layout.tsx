@@ -50,27 +50,13 @@ export const metadata: Metadata = {
   },
 };
 
-// ---- DESKTOP-ONLY LAYOUT ON MOBILE -----------------------------------------
-// This site intentionally does NOT reflow into a separate mobile layout.
-// Instead, the whole page is always laid out at a fixed 1280px desktop
-// width, and this `viewport` export forces every mobile browser to shrink
-// that entire 1280px layout down (via initialScale) until it fits the real
-// screen width — the same effect as opening the desktop site and zooming
-// out. maximumScale + userScalable lock it there so it stays stable and
-// the person can't accidentally pinch-zoom it back to actual desktop size.
-//
-// Using Next.js's typed `viewport` export (instead of a manual <meta> tag
-// in <head>) matters here: if you hand-write the meta tag, Next.js *also*
-// auto-generates its own default viewport tag, and having two conflicting
-// viewport tags makes mobile browsers behave inconsistently. Exporting
-// `viewport` here is what tells Next "I'm handling this" so it only emits
-// the one tag below.
+// Standard responsive viewport — each section below now gets its own
+// mobile-specific layout via Tailwind breakpoints (sm:/md:/lg:) instead of
+// forcing the whole desktop layout to scale down.
 export const viewport: Viewport = {
-  width: 1280,
-  height: 800,
-  initialScale: 0.001,
-  maximumScale: 1,
-  userScalable: false,
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
 };
 
 export default function RootLayout({

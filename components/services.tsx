@@ -28,9 +28,10 @@ const iconMap: Record<string, LucideIcon> = {
 export function Services() {
   return (
     <section id="services" className="section relative overflow-hidden">
-      {/* Layered premium glow — matches Portfolio/Skills sections */}
-      <div className="pointer-events-none absolute -top-24 right-[-6rem] h-96 w-96 rounded-full bg-gradient-to-br from-orange-500/25 via-yellow-400/10 to-transparent blur-[100px]" />
-      <div className="pointer-events-none absolute top-32 left-[-4rem] h-72 w-72 rounded-full bg-gradient-to-tr from-teal-400/20 via-transparent to-transparent blur-[100px]" />
+      {/* Layered premium glow — matches Portfolio/Skills sections.
+          Smaller/softer on mobile so it doesn't overpower a narrow screen. */}
+      <div className="pointer-events-none absolute -top-24 right-[-6rem] h-56 w-56 rounded-full bg-gradient-to-br from-orange-500/25 via-yellow-400/10 to-transparent blur-[60px] sm:h-96 sm:w-96 sm:blur-[100px]" />
+      <div className="pointer-events-none absolute top-32 left-[-4rem] h-56 w-56 rounded-full bg-gradient-to-tr from-teal-400/20 via-transparent to-transparent blur-[60px] sm:h-72 sm:w-72 sm:blur-[100px]" />
 
       {/* Faint grid texture for depth */}
       <div
@@ -52,12 +53,12 @@ export function Services() {
             02 — Services
           </p>
         </div>
-        <h2 className="mt-6 max-w-xl font-display text-3xl font-medium tracking-tight text-ink md:text-4xl">
+        <h2 className="mt-6 max-w-xl font-display text-2xl font-medium tracking-tight text-ink sm:text-3xl md:text-4xl">
           Where I add the most value.
         </h2>
       </div>
 
-      <div className="relative mt-14 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
+      <div className="relative mt-10 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:mt-14 sm:grid-cols-2 lg:grid-cols-3">
         {siteConfig.services.map((service, i) => {
           const Icon = iconMap[service.icon] ?? Film;
           // Alternate the icon badge lean between amber and teal so the
@@ -76,27 +77,27 @@ export function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.5, delay: i * 0.05 }}
-              className="group relative overflow-hidden bg-bg p-8 transition-all duration-300 hover:-translate-y-1 hover:bg-bg-surface"
+              className="group relative overflow-hidden bg-bg p-5 transition-all duration-300 hover:-translate-y-1 hover:bg-bg-surface sm:p-8"
             >
               {/* Gradient top-border — always visible, brightens on hover */}
               <span className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-accent to-teal opacity-60 transition-opacity duration-300 group-hover:opacity-100" />
 
               {/* Gradient side-border — skipped on the first column so it doesn't double the outer frame */}
               {i % 3 !== 0 && (
-                <span className="absolute inset-y-0 left-0 w-[2px] bg-gradient-to-b from-accent to-teal opacity-40 transition-opacity duration-300 group-hover:opacity-80" />
+                <span className="absolute inset-y-0 left-0 hidden w-[2px] bg-gradient-to-b from-accent to-teal opacity-40 transition-opacity duration-300 group-hover:opacity-80 sm:block" />
               )}
 
               {/* Glowing icon badge — alternates amber/teal for color variety */}
               <div
-                className={`relative flex h-12 w-12 items-center justify-center rounded-xl ring-1 transition-colors duration-300 ${iconWrapClass}`}
+                className={`relative flex h-10 w-10 items-center justify-center rounded-xl ring-1 transition-colors duration-300 sm:h-12 sm:w-12 ${iconWrapClass}`}
               >
                 <div
                   className={`absolute inset-0 rounded-xl blur-lg opacity-60 transition-opacity duration-300 group-hover:opacity-100 ${iconGlowClass}`}
                 />
-                <Icon className={`relative ${iconColorClass}`} size={24} strokeWidth={1.5} />
+                <Icon className={`relative ${iconColorClass}`} size={20} strokeWidth={1.5} />
               </div>
 
-              <h3 className="mt-5 font-display text-lg text-ink">{service.title}</h3>
+              <h3 className="mt-4 font-display text-base text-ink sm:mt-5 sm:text-lg">{service.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-ink-muted">
                 {service.description}
               </p>
@@ -111,19 +112,19 @@ export function Services() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.5, delay: siteConfig.services.length * 0.05 }}
-          className="group relative flex flex-col justify-between overflow-hidden bg-gradient-to-br from-accent/15 via-bg to-teal/10 p-8 transition-colors duration-300 hover:from-accent/25 hover:to-teal/20"
+          className="group relative flex flex-col justify-between overflow-hidden bg-gradient-to-br from-accent/15 via-bg to-teal/10 p-5 transition-colors duration-300 hover:from-accent/25 hover:to-teal/20 sm:p-8"
         >
-          <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-accent/20 blur-3xl" />
-          <div className="absolute -bottom-10 -left-10 h-40 w-40 rounded-full bg-teal/20 blur-3xl" />
+          <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-accent/20 blur-2xl sm:h-40 sm:w-40 sm:blur-3xl" />
+          <div className="absolute -bottom-10 -left-10 h-32 w-32 rounded-full bg-teal/20 blur-2xl sm:h-40 sm:w-40 sm:blur-3xl" />
 
           <div className="relative">
-            <h3 className="font-display text-lg text-ink">Need something custom?</h3>
+            <h3 className="font-display text-base text-ink sm:text-lg">Need something custom?</h3>
             <p className="mt-2 text-sm leading-relaxed text-ink-muted">
               Every project is different — let&apos;s talk about what you need.
             </p>
           </div>
 
-          <div className="relative mt-6 flex items-center gap-2 text-sm font-medium text-accent">
+          <div className="relative mt-5 flex items-center gap-2 text-sm font-medium text-accent sm:mt-6">
             Let&apos;s talk
             <ArrowUpRight
               size={16}

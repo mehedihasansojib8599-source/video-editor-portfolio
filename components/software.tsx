@@ -70,28 +70,28 @@ export function Software() {
   const items = [...siteConfig.software, ...siteConfig.software];
 
   return (
-    <section className="relative overflow-hidden border-y border-line py-16">
-      {/* ambient glow so the section doesn't feel empty */}
+    <section className="relative overflow-hidden border-y border-line py-10 sm:py-16">
+      {/* ambient glow so the section doesn't feel empty — smaller/softer on mobile */}
       <div
-        className="pointer-events-none absolute -top-24 left-1/4 h-72 w-72 rounded-full opacity-20 blur-3xl"
+        className="pointer-events-none absolute -top-24 left-1/4 h-48 w-48 rounded-full opacity-20 blur-2xl sm:h-72 sm:w-72 sm:blur-3xl"
         style={{ background: SITE_ACCENT_FROM }}
       />
       <div
-        className="pointer-events-none absolute -bottom-24 right-1/4 h-72 w-72 rounded-full opacity-20 blur-3xl"
+        className="pointer-events-none absolute -bottom-24 right-1/4 h-48 w-48 rounded-full opacity-20 blur-2xl sm:h-72 sm:w-72 sm:blur-3xl"
         style={{ background: SITE_ACCENT_TO }}
       />
 
-      <div className="relative mx-6 md:mx-10">
+      <div className="relative mx-4 sm:mx-6 md:mx-10">
         <p className="section-eyebrow">04 — Software</p>
         <p className="mt-3 max-w-md text-sm text-ink-faint">
           The tools I edit, grade, and mix with — every day.
         </p>
       </div>
 
-      <div className="relative mt-8 overflow-hidden">
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-bg to-transparent" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-bg to-transparent" />
-        <div className="flex w-max animate-marquee gap-6">
+      <div className="relative mt-6 overflow-hidden sm:mt-8">
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-14 bg-gradient-to-r from-bg to-transparent sm:w-24" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-14 bg-gradient-to-l from-bg to-transparent sm:w-24" />
+        <div className="flex w-max animate-marquee gap-4 sm:gap-6">
           {items.map((tool, i) => {
             const style = toolStyle(tool);
             return (
@@ -103,9 +103,9 @@ export function Software() {
                 }}
               >
                 {/* gradient border wrapper: 1.5px padding reveals the site accent as a border */}
-                <div className="flex items-center gap-3 whitespace-nowrap rounded-[15px] border border-line/60 bg-surface px-6 py-4 transition-all duration-300 group-hover:border-transparent group-hover:shadow-[0_16px_36px_-10px_rgba(45,212,191,0.35)]">
+                <div className="flex items-center gap-2.5 whitespace-nowrap rounded-[15px] border border-line/60 bg-surface px-4 py-3 transition-all duration-300 group-hover:border-transparent group-hover:shadow-[0_16px_36px_-10px_rgba(45,212,191,0.35)] sm:gap-3 sm:px-6 sm:py-4">
                   <span
-                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-sm font-bold shadow-inner"
+                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-xs font-bold shadow-inner sm:h-10 sm:w-10 sm:text-sm"
                     style={{
                       background: `linear-gradient(160deg, ${style.from}, ${style.to})`,
                       color: style.text,
@@ -113,7 +113,7 @@ export function Software() {
                   >
                     {style.badge}
                   </span>
-                  <span className="font-display text-lg text-ink-faint transition-colors group-hover:text-ink md:text-xl">
+                  <span className="font-display text-base text-ink-faint transition-colors group-hover:text-ink sm:text-lg md:text-xl">
                     {tool}
                   </span>
                 </div>

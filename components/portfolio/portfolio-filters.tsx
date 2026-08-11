@@ -25,15 +25,17 @@ export function PortfolioFilters({
   onSortChange,
 }: Props) {
   return (
-    <div className="mb-10 flex flex-col gap-6">
-      {/* Category pills — options come from `categories` in data/portfolio.ts */}
-      <div className="flex flex-wrap gap-2">
+    <div className="mb-6 flex flex-col gap-4 sm:mb-10 sm:gap-6">
+      {/* Category pills — options come from `categories` in data/portfolio.ts.
+          Horizontally scrollable on mobile instead of wrapping into many
+          rows, so the filter bar stays compact on a narrow screen. */}
+      <div className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0">
         {categories.map((cat) => (
           <button
             key={cat}
             onClick={() => onCategoryChange(cat)}
             className={cn(
-              'rounded-full border px-4 py-2 text-sm transition-colors',
+              'shrink-0 rounded-full border px-3.5 py-1.5 text-xs transition-colors sm:px-4 sm:py-2 sm:text-sm',
               activeCategory === cat
                 ? 'border-accent bg-accent text-bg'
                 : 'border-line text-ink-muted hover:border-ink-muted hover:text-ink'
@@ -44,7 +46,7 @@ export function PortfolioFilters({
         ))}
       </div>
 
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
         <div className="relative w-full sm:max-w-xs">
           <Search
             size={16}

@@ -9,10 +9,11 @@ export function PortfolioSection() {
       id="portfolio"
       className="section relative overflow-hidden"
     >
-      {/* Background Glows — layered orbs matching other sections */}
-      <div className="pointer-events-none absolute -top-24 right-[-4rem] h-96 w-96 rounded-full bg-gradient-to-br from-orange-500/20 via-yellow-400/10 to-transparent blur-[100px]" />
-      <div className="pointer-events-none absolute top-40 left-[-6rem] h-[28rem] w-[28rem] rounded-full bg-gradient-to-tr from-teal-400/15 via-emerald-500/10 to-transparent blur-[120px]" />
-      <div className="pointer-events-none absolute bottom-0 left-1/3 h-72 w-72 rounded-full bg-gradient-to-t from-orange-400/10 via-transparent to-transparent blur-[100px]" />
+      {/* Background Glows — layered orbs matching other sections.
+          Smaller/softer on mobile so they don't overpower a narrow screen. */}
+      <div className="pointer-events-none absolute -top-24 right-[-4rem] h-56 w-56 rounded-full bg-gradient-to-br from-orange-500/20 via-yellow-400/10 to-transparent blur-[60px] sm:h-96 sm:w-96 sm:blur-[100px]" />
+      <div className="pointer-events-none absolute top-40 left-[-6rem] h-64 w-64 rounded-full bg-gradient-to-tr from-teal-400/15 via-emerald-500/10 to-transparent blur-[70px] sm:h-[28rem] sm:w-[28rem] sm:blur-[120px]" />
+      <div className="pointer-events-none absolute bottom-0 left-1/3 h-48 w-48 rounded-full bg-gradient-to-t from-orange-400/10 via-transparent to-transparent blur-[60px] sm:h-72 sm:w-72 sm:blur-[100px]" />
 
       {/* Grid Background */}
       <div
@@ -26,18 +27,18 @@ export function PortfolioSection() {
       />
 
       {/* Heading */}
-      <div className="relative mb-12 flex items-center justify-between">
+      <div className="relative mb-8 flex items-center justify-between sm:mb-12">
         <div>
           <span className="mb-3 inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-500/10 px-4 py-1.5 text-xs font-medium tracking-widest text-orange-300 shadow-[0_0_20px_-6px_rgba(251,146,60,0.4)]">
             <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-orange-400" />
             05 — PORTFOLIO
           </span>
-          <h2 className="font-display bg-gradient-to-r from-orange-300 via-yellow-200 to-teal-300 bg-clip-text text-4xl font-semibold tracking-tight text-transparent md:text-5xl">
+          <h2 className="font-display bg-gradient-to-r from-orange-300 via-yellow-200 to-teal-300 bg-clip-text text-3xl font-semibold tracking-tight text-transparent sm:text-4xl md:text-5xl">
             Portfolio
           </h2>
         </div>
 
-        {/* Right Icons */}
+        {/* Right Icons — already hidden below sm, unchanged */}
         <div className="relative hidden h-28 w-40 shrink-0 sm:block">
           {/* ambient glow behind icons */}
           <div className="pointer-events-none absolute -right-6 -top-6 h-40 w-40 rounded-full bg-gradient-to-br from-purple-500/25 via-orange-400/15 to-transparent blur-[60px]" />
@@ -64,7 +65,7 @@ export function PortfolioSection() {
       </div>
 
       {/* Divider */}
-      <div className="relative mb-10 h-px w-full bg-gradient-to-r from-orange-500/30 via-teal-400/20 to-transparent" />
+      <div className="relative mb-8 h-px w-full bg-gradient-to-r from-orange-500/30 via-teal-400/20 to-transparent sm:mb-10" />
 
       {/* Portfolio Grid — filters are rendered + styled inside PortfolioGrid itself */}
       <PortfolioGrid

@@ -222,9 +222,10 @@ function VideoModal({
           type="button"
           onClick={onClose}
           aria-label="Close video"
-          className="absolute right-4 top-4 z-50 flex h-11 w-11 items-center justify-center rounded-full bg-black/80 text-white shadow-lg backdrop-blur-md transition-all hover:scale-105 hover:bg-black"
+          className="absolute right-3 top-3 z-50 flex h-10 w-10 items-center justify-center rounded-full bg-black/80 text-white shadow-lg backdrop-blur-md transition-all hover:scale-105 hover:bg-black sm:right-4 sm:top-4 sm:h-11 sm:w-11"
         >
-          <X size={21} />
+          <X size={19} className="sm:hidden" />
+          <X size={21} className="hidden sm:block" />
         </button>
       </div>
     </div>,
@@ -317,8 +318,9 @@ export function PortfolioCard({
               />
               <div className="absolute inset-0 bg-black/20 transition-all duration-300 group-hover:bg-black/35" />
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-orange-400 to-yellow-300 text-black shadow-[0_0_35px_-4px_rgba(249,115,22,0.8)] transition-transform duration-300 group-hover:scale-110">
-                  <Play size={25} fill="currentColor" />
+                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-orange-400 to-yellow-300 text-black shadow-[0_0_35px_-4px_rgba(249,115,22,0.8)] transition-transform duration-300 group-hover:scale-110 sm:h-16 sm:w-16">
+                  <Play size={22} fill="currentColor" className="sm:hidden" />
+                  <Play size={25} fill="currentColor" className="hidden sm:block" />
                 </div>
               </div>
             </>
@@ -326,8 +328,9 @@ export function PortfolioCard({
             <>
               <div className="absolute inset-0 bg-black" />
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-orange-400 to-yellow-300 text-black shadow-[0_0_35px_-4px_rgba(249,115,22,0.8)] transition-transform duration-300 group-hover:scale-110">
-                  <Play size={25} fill="currentColor" />
+                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-orange-400 to-yellow-300 text-black shadow-[0_0_35px_-4px_rgba(249,115,22,0.8)] transition-transform duration-300 group-hover:scale-110 sm:h-16 sm:w-16">
+                  <Play size={22} fill="currentColor" className="sm:hidden" />
+                  <Play size={25} fill="currentColor" className="hidden sm:block" />
                 </div>
               </div>
             </>
@@ -346,7 +349,7 @@ export function PortfolioCard({
           )}
         </button>
 
-        <div className="p-5">
+        <div className="p-4 sm:p-5">
           <div className="mb-2 flex items-center justify-between">
             <span className="text-[11px] font-semibold uppercase tracking-widest text-teal-300">
               • {project.category}
@@ -354,7 +357,7 @@ export function PortfolioCard({
             <span className="text-xs text-ink-faint">{formatDate(project.date)}</span>
           </div>
 
-          <h3 className="font-display text-lg text-ink">{project.title}</h3>
+          <h3 className="font-display text-base text-ink sm:text-lg">{project.title}</h3>
 
           <p className="mt-2 line-clamp-2 text-sm text-ink-muted">
             {project.description}
@@ -403,19 +406,20 @@ export function PortfolioCard({
           <div className="absolute inset-0 bg-black/20 transition-all duration-300 group-hover:bg-black/35" />
 
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-orange-400 to-yellow-300 text-black shadow-[0_0_35px_-4px_rgba(249,115,22,0.8)] transition-transform duration-300 group-hover:scale-110">
-              <Play size={25} fill="currentColor" />
+            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-orange-400 to-yellow-300 text-black shadow-[0_0_35px_-4px_rgba(249,115,22,0.8)] transition-transform duration-300 group-hover:scale-110 sm:h-16 sm:w-16">
+              <Play size={22} fill="currentColor" className="sm:hidden" />
+              <Play size={25} fill="currentColor" className="hidden sm:block" />
             </div>
           </div>
 
           {project.featured && (
-            <span className="absolute left-4 top-4 rounded-full bg-gradient-to-r from-orange-400 to-yellow-300 px-3 py-1 text-[10px] font-semibold uppercase tracking-wide text-black">
+            <span className="absolute left-3 top-3 rounded-full bg-gradient-to-r from-orange-400 to-yellow-300 px-3 py-1 text-[10px] font-semibold uppercase tracking-wide text-black sm:left-4 sm:top-4">
               Featured
             </span>
           )}
 
           {project.duration && (
-            <span className="absolute right-4 top-4 rounded-full bg-black/70 px-3 py-1 text-[10px] text-white backdrop-blur-sm">
+            <span className="absolute right-3 top-3 rounded-full bg-black/70 px-3 py-1 text-[10px] text-white backdrop-blur-sm sm:right-4 sm:top-4">
               {project.duration}
             </span>
           )}
@@ -425,7 +429,7 @@ export function PortfolioCard({
         {/*                             INFO                                  */}
         {/* ---------------------------------------------------------------- */}
 
-        <div className="p-6">
+        <div className="p-4 sm:p-6">
           <div className="mb-2 flex items-center justify-between">
             <span className="text-[11px] font-semibold uppercase tracking-widest text-orange-300">
               • {project.category}
@@ -433,7 +437,7 @@ export function PortfolioCard({
             <span className="text-xs text-ink-faint">{formatDate(project.date)}</span>
           </div>
 
-          <h3 className="font-display text-lg text-ink">{project.title}</h3>
+          <h3 className="font-display text-base text-ink sm:text-lg">{project.title}</h3>
 
           <p className="mt-2 line-clamp-2 text-sm text-ink-muted">
             {project.description}

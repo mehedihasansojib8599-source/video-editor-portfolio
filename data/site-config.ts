@@ -19,7 +19,7 @@ tagline: 'YouTube & Faceless Video Editor',
   description:
     'Professional YouTube Video Editor specializing in Faceless Videos, Shorts, Motion Graphics, Storytelling and Premiere Pro.',
 
-  url: 'https://your-domain.com',
+  url: 'https://mehedihasan-editor.vercel.app',
 
   ogImage: '/images/og-image.jpg',
 },

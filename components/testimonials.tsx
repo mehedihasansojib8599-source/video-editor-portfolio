@@ -46,9 +46,10 @@ export function Testimonials() {
 
   return (
     <section id="testimonials" className="section relative overflow-hidden">
-      {/* big vivid ambient glow blobs — brand colors only */}
-      <div className="pointer-events-none absolute -left-40 top-0 h-[500px] w-[500px] rounded-full bg-orange-500/20 blur-[140px]" />
-      <div className="pointer-events-none absolute right-0 top-1/3 h-[450px] w-[450px] rounded-full bg-teal-400/20 blur-[140px]" />
+      {/* big vivid ambient glow blobs — brand colors only.
+          Smaller/softer on mobile so they don't overpower a narrow screen. */}
+      <div className="pointer-events-none absolute -left-40 top-0 h-64 w-64 rounded-full bg-orange-500/20 blur-[70px] sm:h-[500px] sm:w-[500px] sm:blur-[140px]" />
+      <div className="pointer-events-none absolute right-0 top-1/3 h-56 w-56 rounded-full bg-teal-400/20 blur-[70px] sm:h-[450px] sm:w-[450px] sm:blur-[140px]" />
 
       <div className="relative">
         {/* eyebrow pill */}
@@ -57,14 +58,14 @@ export function Testimonials() {
           06 — TESTIMONIALS
         </span>
 
-        <h2 className="mt-6 max-w-xl font-display text-3xl font-medium tracking-tight md:text-4xl">
+        <h2 className="mt-6 max-w-xl font-display text-2xl font-medium tracking-tight sm:text-3xl md:text-4xl">
           <span className="text-white">What clients say</span>{' '}
           <span className="bg-gradient-to-r from-orange-300 via-amber-200 to-teal-300 bg-clip-text text-transparent">
             after delivery.
           </span>
         </h2>
 
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
+        <div className="mt-10 grid gap-5 sm:mt-14 sm:gap-6 md:grid-cols-3">
           {siteConfig.testimonials.map((t, i) => {
             const theme = themes[i % themes.length];
             return (
@@ -80,11 +81,11 @@ export function Testimonials() {
                   theme.glow
                 )}
               >
-                <div className="relative flex h-full flex-col overflow-hidden rounded-2xl bg-[#0a0a0a] p-8">
+                <div className="relative flex h-full flex-col overflow-hidden rounded-2xl bg-[#0a0a0a] p-6 sm:p-8">
                   {/* soft color wash inside the card */}
                   <div
                     className={cn(
-                      'pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-gradient-to-br opacity-20 blur-3xl',
+                      'pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-gradient-to-br opacity-20 blur-2xl sm:h-40 sm:w-40 sm:blur-3xl',
                       theme.border
                     )}
                   />
@@ -92,29 +93,29 @@ export function Testimonials() {
                   <div className="relative flex items-start justify-between">
                     <span
                       className={cn(
-                        'flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br shadow-inner',
+                        'flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br shadow-inner sm:h-11 sm:w-11',
                         theme.iconBg,
                         theme.iconText
                       )}
                     >
-                      <Quote size={19} strokeWidth={2} fill="currentColor" />
+                      <Quote size={17} strokeWidth={2} fill="currentColor" className="sm:h-[19px] sm:w-[19px]" />
                     </span>
                     <Quote
                       className={theme.quoteMark}
-                      size={64}
+                      size={48}
                       strokeWidth={1}
                       fill="currentColor"
                     />
                   </div>
 
-                  <p className="relative mt-6 flex-1 text-sm leading-relaxed text-white/75">
+                  <p className="relative mt-5 flex-1 text-sm leading-relaxed text-white/75 sm:mt-6">
                     “{t.quote}”
                   </p>
 
-                  <div className="relative mt-6 flex items-center gap-3 border-t border-white/10 pt-6">
+                  <div className="relative mt-5 flex items-center gap-3 border-t border-white/10 pt-5 sm:mt-6 sm:pt-6">
                     <div
                       className={cn(
-                        'relative h-12 w-12 shrink-0 overflow-hidden rounded-full bg-gradient-to-br p-[2.5px]',
+                        'relative h-11 w-11 shrink-0 overflow-hidden rounded-full bg-gradient-to-br p-[2.5px] sm:h-12 sm:w-12',
                         theme.ring
                       )}
                     >

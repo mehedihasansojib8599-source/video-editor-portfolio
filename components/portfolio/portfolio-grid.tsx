@@ -70,9 +70,9 @@ export function PortfolioGrid({
   return (
     <div>
       {filtered.length === 0 ? (
-        <div className="relative overflow-hidden rounded-2xl border border-dashed border-line py-20 text-center">
+        <div className="relative overflow-hidden rounded-2xl border border-dashed border-line py-14 text-center sm:py-20">
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-orange-500/5 via-transparent to-teal-400/5" />
-          <p className="relative text-ink-muted">
+          <p className="relative text-sm text-ink-muted sm:text-base">
             No projects match that search yet.
           </p>
 
@@ -88,7 +88,7 @@ export function PortfolioGrid({
             <AnimatePresence mode="popLayout">
               <motion.div
                 layout
-                className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+                className="grid gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3"
               >
                 {normalVideos.map((project, i) => (
                   <div
@@ -110,21 +110,21 @@ export function PortfolioGrid({
           {/* REELS (mp4 + facebook + displayAsReel) */}
 
           {reels.length > 0 && (
-            <div className="relative mt-24 overflow-hidden rounded-[2rem] border border-white/15 bg-gradient-to-br from-white/[0.08] via-white/[0.03] to-transparent p-8 shadow-[0_0_80px_-20px_rgba(251,146,60,0.25)] backdrop-blur-sm sm:p-12">
+            <div className="relative mt-14 overflow-hidden rounded-[1.5rem] border border-white/15 bg-gradient-to-br from-white/[0.08] via-white/[0.03] to-transparent p-5 shadow-[0_0_80px_-20px_rgba(251,146,60,0.25)] backdrop-blur-sm sm:mt-24 sm:rounded-[2rem] sm:p-8 lg:p-12">
               {/* animated rotating gradient border */}
-              <div className="pointer-events-none absolute inset-0 rounded-[2rem] opacity-60">
-                <div className="absolute inset-0 rounded-[2rem] bg-[conic-gradient(from_0deg,transparent,rgba(251,146,60,0.5),transparent_35%,rgba(45,212,191,0.5),transparent_70%,rgba(251,146,60,0.5))] animate-[spin_8s_linear_infinite]" />
-                <div className="absolute inset-[1.5px] rounded-[2rem] bg-[#0a0c10]" />
+              <div className="pointer-events-none absolute inset-0 rounded-[1.5rem] opacity-60 sm:rounded-[2rem]">
+                <div className="absolute inset-0 rounded-[1.5rem] bg-[conic-gradient(from_0deg,transparent,rgba(251,146,60,0.5),transparent_35%,rgba(45,212,191,0.5),transparent_70%,rgba(251,146,60,0.5))] animate-[spin_8s_linear_infinite] sm:rounded-[2rem]" />
+                <div className="absolute inset-[1.5px] rounded-[1.5rem] bg-[#0a0c10] sm:rounded-[2rem]" />
               </div>
 
               {/* outer glow ring */}
-              <div className="pointer-events-none absolute inset-0 rounded-[2rem] bg-gradient-to-r from-orange-500/15 via-transparent to-teal-400/15" />
+              <div className="pointer-events-none absolute inset-0 rounded-[1.5rem] bg-gradient-to-r from-orange-500/15 via-transparent to-teal-400/15 sm:rounded-[2rem]" />
 
-              {/* large vivid ambient glows */}
-              <div className="pointer-events-none absolute left-1/2 top-0 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-orange-500/40 via-yellow-400/25 to-transparent blur-[110px]" />
-              <div className="pointer-events-none absolute right-0 top-1/3 h-80 w-80 translate-x-1/3 rounded-full bg-gradient-to-tr from-teal-400/40 via-emerald-500/20 to-transparent blur-[110px]" />
-              <div className="pointer-events-none absolute left-0 bottom-0 h-72 w-72 -translate-x-1/3 rounded-full bg-gradient-to-tr from-purple-500/30 via-indigo-400/20 to-transparent blur-[100px]" />
-              <div className="pointer-events-none absolute right-1/4 bottom-1/4 h-56 w-56 rounded-full bg-gradient-to-tr from-pink-500/20 via-orange-400/15 to-transparent blur-[90px]" />
+              {/* large vivid ambient glows — smaller/softer on mobile so they don't overpower a narrow screen */}
+              <div className="pointer-events-none absolute left-1/2 top-0 h-56 w-56 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-orange-500/40 via-yellow-400/25 to-transparent blur-[60px] sm:h-96 sm:w-96 sm:blur-[110px]" />
+              <div className="pointer-events-none absolute right-0 top-1/3 h-48 w-48 translate-x-1/3 rounded-full bg-gradient-to-tr from-teal-400/40 via-emerald-500/20 to-transparent blur-[60px] sm:h-80 sm:w-80 sm:blur-[110px]" />
+              <div className="pointer-events-none absolute left-0 bottom-0 h-40 w-40 -translate-x-1/3 rounded-full bg-gradient-to-tr from-purple-500/30 via-indigo-400/20 to-transparent blur-[50px] sm:h-72 sm:w-72 sm:blur-[100px]" />
+              <div className="pointer-events-none absolute right-1/4 bottom-1/4 hidden h-56 w-56 rounded-full bg-gradient-to-tr from-pink-500/20 via-orange-400/15 to-transparent blur-[90px] sm:block" />
 
               {/* faint grid texture */}
               <div
@@ -138,28 +138,28 @@ export function PortfolioGrid({
               />
 
               {/* Header */}
-              <div className="relative mb-14 text-center">
-                <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-teal-400/50 bg-gradient-to-r from-teal-400/20 via-teal-400/10 to-orange-400/20 px-4 py-1.5 text-xs font-medium tracking-widest text-teal-200 shadow-[0_0_30px_-4px_rgba(45,212,191,0.6)]">
+              <div className="relative mb-8 text-center sm:mb-14">
+                <span className="mb-3 inline-flex items-center gap-2 rounded-full border border-teal-400/50 bg-gradient-to-r from-teal-400/20 via-teal-400/10 to-orange-400/20 px-3.5 py-1.5 text-[11px] font-medium tracking-widest text-teal-200 shadow-[0_0_30px_-4px_rgba(45,212,191,0.6)] sm:mb-4 sm:px-4 sm:text-xs">
                   <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-teal-300 shadow-[0_0_10px_2px_rgba(45,212,191,0.8)]" />
                   FEATURED REELS
                 </span>
 
-                <h2 className="bg-gradient-to-r from-orange-300 via-fuchsia-200 to-teal-300 bg-clip-text text-4xl font-bold text-transparent drop-shadow-[0_0_25px_rgba(251,146,60,0.35)] sm:text-5xl">
+                <h2 className="bg-gradient-to-r from-orange-300 via-fuchsia-200 to-teal-300 bg-clip-text text-3xl font-bold text-transparent drop-shadow-[0_0_25px_rgba(251,146,60,0.35)] sm:text-4xl md:text-5xl">
                   Shorts and Reels
                 </h2>
 
-                <p className="mt-3 text-gray-300">
+                <p className="mt-3 text-sm text-gray-300 sm:text-base">
                   Short Reel Edit
                 </p>
 
                 {/* divider under header */}
-                <div className="mx-auto mt-8 h-px w-40 bg-gradient-to-r from-transparent via-orange-400/60 to-transparent shadow-[0_0_10px_rgba(251,146,60,0.5)]" />
+                <div className="mx-auto mt-6 h-px w-32 bg-gradient-to-r from-transparent via-orange-400/60 to-transparent shadow-[0_0_10px_rgba(251,146,60,0.5)] sm:mt-8 sm:w-40" />
               </div>
 
               {/* Reel cards */}
               <motion.div
                 layout
-                className="relative grid gap-8 sm:grid-cols-2 lg:grid-cols-4"
+                className="relative grid grid-cols-2 gap-4 sm:gap-8 lg:grid-cols-4"
               >
                 {reels.map((project, i) => {
                   const colorSets = [

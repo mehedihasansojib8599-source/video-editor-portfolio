@@ -64,9 +64,9 @@ const socialBrandStyles: Record<
 export function Footer() {
   return (
     <footer className="relative overflow-hidden border-t border-line">
-      {/* Background Glows */}
-      <div className="pointer-events-none absolute -top-32 left-1/4 h-96 w-96 rounded-full bg-gradient-to-br from-orange-500/15 via-yellow-400/5 to-transparent blur-[120px]" />
-      <div className="pointer-events-none absolute -bottom-24 right-1/4 h-80 w-80 rounded-full bg-gradient-to-tr from-teal-400/15 via-emerald-500/5 to-transparent blur-[120px]" />
+      {/* Background Glows — smaller/softer on mobile so they don't overpower a narrow screen */}
+      <div className="pointer-events-none absolute -top-32 left-1/4 h-56 w-56 rounded-full bg-gradient-to-br from-orange-500/15 via-yellow-400/5 to-transparent blur-[60px] sm:h-96 sm:w-96 sm:blur-[120px]" />
+      <div className="pointer-events-none absolute -bottom-24 right-1/4 h-48 w-48 rounded-full bg-gradient-to-tr from-teal-400/15 via-emerald-500/5 to-transparent blur-[60px] sm:h-80 sm:w-80 sm:blur-[120px]" />
 
       {/* Grid Background */}
       <div
@@ -78,9 +78,9 @@ export function Footer() {
         }}
       />
 
-      <div className="section relative grid gap-12 py-16 md:grid-cols-3">
+      <div className="section relative grid gap-10 py-10 sm:gap-12 sm:py-16 md:grid-cols-3">
         <div>
-          <span className="font-display bg-gradient-to-r from-orange-300 via-yellow-200 to-teal-300 bg-clip-text text-2xl font-semibold text-transparent">
+          <span className="font-display bg-gradient-to-r from-orange-300 via-yellow-200 to-teal-300 bg-clip-text text-xl font-semibold text-transparent sm:text-2xl">
             {siteConfig.logoText}
           </span>
           <p className="mt-4 max-w-xs text-sm text-ink-muted">
@@ -119,11 +119,11 @@ export function Footer() {
             <li>
               <a
                 href={`mailto:${siteConfig.contact.email}`}
-                className="group relative inline-flex rounded-xl bg-gradient-to-br from-orange-400/40 via-white/10 to-yellow-400/40 p-[1.5px] shadow-[0_0_16px_-8px_rgba(251,146,60,0.4)] transition-all duration-300 hover:from-orange-400/80 hover:to-yellow-400/80 hover:shadow-[0_0_24px_-4px_rgba(251,146,60,0.55)]"
+                className="group relative inline-flex max-w-full rounded-xl bg-gradient-to-br from-orange-400/40 via-white/10 to-yellow-400/40 p-[1.5px] shadow-[0_0_16px_-8px_rgba(251,146,60,0.4)] transition-all duration-300 hover:from-orange-400/80 hover:to-yellow-400/80 hover:shadow-[0_0_24px_-4px_rgba(251,146,60,0.55)]"
               >
-                <span className="flex items-center gap-2 rounded-xl bg-[#0b0e13] px-4 py-2 text-sm text-ink-muted transition-colors group-hover:text-orange-200">
-                  <span className="h-1.5 w-1.5 rounded-full bg-orange-400" />
-                  {siteConfig.contact.email}
+                <span className="flex min-w-0 items-center gap-2 rounded-xl bg-[#0b0e13] px-4 py-2 text-sm text-ink-muted transition-colors group-hover:text-orange-200">
+                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-orange-400" />
+                  <span className="truncate">{siteConfig.contact.email}</span>
                 </span>
               </a>
             </li>
@@ -150,7 +150,7 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="relative border-t border-white/10 px-6 py-6 text-center font-mono text-xs text-ink-faint md:px-10">
+      <div className="relative border-t border-white/10 px-6 py-5 text-center font-mono text-[11px] text-ink-faint sm:py-6 sm:text-xs md:px-10">
         © {new Date().getFullYear()} {siteConfig.siteName}. All rights reserved.
         {' · '}
         <Link

@@ -3,11 +3,11 @@ import Link from 'next/link';
 export default function NotFound() {
   return (
     <div className="flex min-h-[80vh] flex-col items-center justify-center px-6 text-center">
-      <p className="timecode text-sm text-accent">ERROR — 00:04:04</p>
-      <h1 className="mt-4 font-display text-5xl font-medium text-ink md:text-6xl">
+      <p className="timecode text-xs text-accent sm:text-sm">ERROR — 00:04:04</p>
+      <h1 className="mt-4 font-display text-4xl font-medium text-ink sm:text-5xl md:text-6xl">
         Clip not found.
       </h1>
-      <p className="mt-4 max-w-sm text-ink-muted">
+      <p className="mt-4 max-w-sm text-sm text-ink-muted sm:text-base">
         This frame doesn&apos;t exist in the timeline. It may have been moved,
         renamed, or never rendered.
       </p>

@@ -57,7 +57,7 @@ function AverageCounter({ value }: { value: number }) {
   return (
     <span
       ref={ref}
-      className="bg-gradient-to-br from-orange-200 via-white to-teal-200 bg-clip-text font-display text-4xl font-medium text-transparent"
+      className="bg-gradient-to-br from-orange-200 via-white to-teal-200 bg-clip-text font-display text-3xl font-medium text-transparent sm:text-4xl"
     >
       {display}%
     </span>
@@ -117,18 +117,19 @@ export function Skills() {
 
   return (
     <section className="section relative overflow-hidden">
-      {/* Layered premium glow — now gently breathing */}
+      {/* Layered premium glow — now gently breathing.
+          Smaller/softer on mobile so it doesn't overpower a narrow screen. */}
       <motion.div
-        className="pointer-events-none absolute -top-24 left-[-6rem] h-96 w-96 rounded-full bg-gradient-to-br from-orange-500/25 via-yellow-400/10 to-transparent blur-[100px]"
+        className="pointer-events-none absolute -top-24 left-[-6rem] h-56 w-56 rounded-full bg-gradient-to-br from-orange-500/25 via-yellow-400/10 to-transparent blur-[60px] sm:h-96 sm:w-96 sm:blur-[100px]"
         animate={{ opacity: [0.7, 1, 0.7], scale: [1, 1.06, 1] }}
         transition={{ repeat: Infinity, duration: 9, ease: 'easeInOut' }}
       />
       <motion.div
-        className="pointer-events-none absolute bottom-0 right-[-4rem] h-80 w-80 rounded-full bg-gradient-to-tl from-teal-400/20 via-transparent to-transparent blur-[100px]"
+        className="pointer-events-none absolute bottom-0 right-[-4rem] h-48 w-48 rounded-full bg-gradient-to-tl from-teal-400/20 via-transparent to-transparent blur-[60px] sm:h-80 sm:w-80 sm:blur-[100px]"
         animate={{ opacity: [0.6, 1, 0.6], scale: [1, 1.05, 1] }}
         transition={{ repeat: Infinity, duration: 11, ease: 'easeInOut', delay: 1 }}
       />
-      <div className="pointer-events-none absolute left-1/4 top-0 h-64 w-64 -translate-y-1/2 rounded-full bg-gradient-to-br from-purple-500/15 via-orange-400/10 to-transparent blur-[90px]" />
+      <div className="pointer-events-none absolute left-1/4 top-0 hidden h-64 w-64 -translate-y-1/2 rounded-full bg-gradient-to-br from-purple-500/15 via-orange-400/10 to-transparent blur-[90px] sm:block" />
 
       {/* Faint grid texture */}
       <div
@@ -149,9 +150,9 @@ export function Skills() {
         }}
       />
 
-      <div className="relative grid gap-16 md:grid-cols-2">
+      <div className="relative grid gap-10 md:grid-cols-2 md:gap-16">
         <div className="md:sticky md:top-28 md:self-start">
-          {/* Floating decorative skill chips */}
+          {/* Floating decorative skill chips — desktop/tablet only, unchanged */}
           <div className="relative mb-10 hidden h-16 sm:block">
             <motion.span
               initial={{ opacity: 0, y: 10 }}
@@ -210,7 +211,7 @@ export function Skills() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.08, ease: EASE }}
-            className="mt-6 font-display text-3xl font-medium tracking-tight text-ink md:text-4xl"
+            className="mt-6 font-display text-2xl font-medium tracking-tight text-ink sm:text-3xl md:text-4xl"
           >
             Craft, measured honestly.
           </motion.h2>
@@ -220,21 +221,21 @@ export function Skills() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.14, ease: EASE }}
-            className="mt-4 max-w-sm text-ink-muted"
+            className="mt-4 max-w-sm text-sm text-ink-muted sm:text-base"
           >
             A candid read on where my strengths sit — so you know exactly what
             you&apos;re hiring for.
           </motion.p>
 
-          {/* Radial average-proficiency chart */}
+          {/* Radial average-proficiency chart — stacks above the stat cards on mobile */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2, ease: EASE }}
-            className="mt-12 flex items-center gap-8"
+            className="mt-10 flex flex-col items-center gap-6 sm:mt-12 sm:flex-row sm:items-center sm:gap-8"
           >
-            <div className="relative h-48 w-48 shrink-0">
+            <div className="relative h-36 w-36 shrink-0 sm:h-48 sm:w-48">
               {/* breathing ambient glow behind the ring */}
               <motion.div
                 className="pointer-events-none absolute inset-0 -m-4 rounded-full bg-gradient-to-br from-orange-500/25 via-transparent to-teal-400/25 blur-2xl"
@@ -301,10 +302,10 @@ export function Skills() {
               </div>
             </div>
 
-            <div className="flex flex-col gap-4">
+            <div className="flex w-full flex-col gap-3 sm:w-auto sm:gap-4">
               <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-orange-400/30 via-white/10 to-teal-400/30 p-[1.5px] shadow-[0_0_20px_-10px_rgba(249,115,22,0.4)] transition-all duration-300 hover:shadow-[0_0_28px_-8px_rgba(249,115,22,0.6)] hover:-translate-y-0.5">
                 <div className="rounded-2xl bg-bg-surface px-5 py-4 backdrop-blur-sm">
-                  <p className="font-display text-2xl font-medium text-ink">
+                  <p className="font-display text-xl font-medium text-ink sm:text-2xl">
                     {skills.length}+
                   </p>
                   <p className="text-xs text-ink-faint">Core skills tracked</p>
@@ -312,7 +313,7 @@ export function Skills() {
               </div>
               <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-teal-400/30 via-white/10 to-orange-400/30 p-[1.5px] shadow-[0_0_20px_-10px_rgba(45,212,191,0.4)] transition-all duration-300 hover:shadow-[0_0_28px_-8px_rgba(45,212,191,0.6)] hover:-translate-y-0.5">
                 <div className="rounded-2xl bg-bg-surface px-5 py-4 backdrop-blur-sm">
-                  <p className="font-display text-lg font-medium text-accent">
+                  <p className="font-display text-base font-medium text-accent sm:text-lg">
                     {topSkill.name}
                   </p>
                   <p className="text-xs text-ink-faint">
@@ -329,7 +330,7 @@ export function Skills() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3, ease: EASE }}
-            className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3"
+            className="mt-8 grid grid-cols-2 gap-2.5 sm:gap-3 sm:grid-cols-3"
           >
             {toolBrandStyles.map((tool, i) => (
               <motion.div
@@ -344,7 +345,7 @@ export function Skills() {
                   className="absolute inset-0 -z-10 rounded-full opacity-0 blur-lg transition-opacity duration-300 group-hover:opacity-60"
                   style={{ background: tool.glow }}
                 />
-                <span className="flex items-center justify-center gap-1.5 rounded-full bg-bg-surface px-4 py-2 text-center text-xs text-ink-muted backdrop-blur-sm transition-colors duration-300 group-hover:text-white">
+                <span className="flex items-center justify-center gap-1.5 rounded-full bg-bg-surface px-3 py-2 text-center text-[11px] text-ink-muted backdrop-blur-sm transition-colors duration-300 group-hover:text-white sm:px-4 sm:text-xs">
                   <span className={`h-1.5 w-1.5 rounded-full ${tool.dot} transition-shadow duration-300 group-hover:shadow-[0_0_8px_currentColor]`} />
                   {tool.name}
                 </span>
@@ -358,10 +359,10 @@ export function Skills() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4, ease: EASE }}
-            className="group relative mt-8 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.05] to-white/[0.01] p-6 shadow-xl backdrop-blur-sm transition-all duration-500 hover:border-white/20 hover:shadow-[0_0_40px_-12px_rgba(249,115,22,0.35)]"
+            className="group relative mt-8 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.05] to-white/[0.01] p-5 shadow-xl backdrop-blur-sm transition-all duration-500 hover:border-white/20 hover:shadow-[0_0_40px_-12px_rgba(249,115,22,0.35)] sm:p-6"
           >
-            <div className="pointer-events-none absolute -top-10 -left-10 h-40 w-40 rounded-full bg-orange-500/15 blur-[70px] transition-opacity duration-500 group-hover:opacity-150" />
-            <div className="pointer-events-none absolute -bottom-10 -right-10 h-40 w-40 rounded-full bg-teal-400/15 blur-[70px]" />
+            <div className="pointer-events-none absolute -top-10 -left-10 h-32 w-32 rounded-full bg-orange-500/15 blur-[50px] transition-opacity duration-500 group-hover:opacity-150 sm:h-40 sm:w-40 sm:blur-[70px]" />
+            <div className="pointer-events-none absolute -bottom-10 -right-10 h-32 w-32 rounded-full bg-teal-400/15 blur-[50px] sm:h-40 sm:w-40 sm:blur-[70px]" />
 
             <svg
               className="relative mb-3 h-6 w-6 text-orange-400/60"

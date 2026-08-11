@@ -12,9 +12,10 @@ export function FAQ() {
 
   return (
     <section className="section relative overflow-hidden">
-      {/* ambient glow blobs — matches hero/contact sections */}
-      <div className="pointer-events-none absolute -left-32 top-0 h-[420px] w-[420px] rounded-full bg-orange-500/10 blur-[120px]" />
-      <div className="pointer-events-none absolute -right-32 bottom-0 h-[420px] w-[420px] rounded-full bg-teal-400/10 blur-[120px]" />
+      {/* ambient glow blobs — matches hero/contact sections.
+          Smaller/softer on mobile so it doesn't overpower a narrow screen. */}
+      <div className="pointer-events-none absolute -left-32 top-0 h-64 w-64 rounded-full bg-orange-500/10 blur-[60px] sm:h-[420px] sm:w-[420px] sm:blur-[120px]" />
+      <div className="pointer-events-none absolute -right-32 bottom-0 h-64 w-64 rounded-full bg-teal-400/10 blur-[60px] sm:h-[420px] sm:w-[420px] sm:blur-[120px]" />
 
       <div className="relative">
         {/* eyebrow pill */}
@@ -23,14 +24,14 @@ export function FAQ() {
           09 — FAQ
         </span>
 
-        <h2 className="mt-6 max-w-xl font-display text-3xl font-medium tracking-tight md:text-4xl">
+        <h2 className="mt-6 max-w-xl font-display text-2xl font-medium tracking-tight sm:text-3xl md:text-4xl">
           <span className="bg-gradient-to-r from-orange-300 via-amber-200 to-teal-300 bg-clip-text text-transparent">
             Answers
           </span>{' '}
           <span className="text-white">before you ask.</span>
         </h2>
 
-        <div className="mt-14 space-y-4">
+        <div className="mt-10 space-y-3 sm:mt-14 sm:space-y-4">
           {siteConfig.faq.map((item, i) => {
             const isOpen = open === i;
             return (
@@ -45,18 +46,18 @@ export function FAQ() {
               >
                 <div
                   className={cn(
-                    'rounded-2xl bg-[#0c0c0c] px-6 transition-colors',
+                    'rounded-2xl bg-[#0c0c0c] px-4 transition-colors sm:px-6',
                     isOpen && 'bg-[#111110]'
                   )}
                 >
                   <button
                     onClick={() => setOpen(isOpen ? null : i)}
                     aria-expanded={isOpen}
-                    className="flex w-full items-center gap-5 py-6 text-left"
+                    className="flex w-full items-center gap-3 py-5 text-left sm:gap-5 sm:py-6"
                   >
                     <span
                       className={cn(
-                        'font-mono text-xs tabular-nums transition-colors',
+                        'hidden font-mono text-xs tabular-nums transition-colors sm:inline',
                         isOpen ? 'text-orange-400' : 'text-white/30 group-hover:text-teal-300'
                       )}
                     >
@@ -65,7 +66,7 @@ export function FAQ() {
 
                     <span
                       className={cn(
-                        'flex-1 pr-8 font-display text-lg transition-colors',
+                        'flex-1 pr-4 font-display text-base transition-colors sm:pr-8 sm:text-lg',
                         isOpen ? 'text-white' : 'text-white/80'
                       )}
                     >
@@ -74,7 +75,7 @@ export function FAQ() {
 
                     <span
                       className={cn(
-                        'flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition-all duration-300',
+                        'flex h-7 w-7 shrink-0 items-center justify-center rounded-full border transition-all duration-300 sm:h-8 sm:w-8',
                         isOpen
                           ? 'rotate-180 border-transparent bg-gradient-to-br from-orange-400 to-teal-400 text-black'
                           : 'border-white/15 text-white/50 group-hover:border-orange-400/40 group-hover:text-orange-300'
@@ -93,7 +94,7 @@ export function FAQ() {
                         transition={{ duration: 0.25, ease: 'easeInOut' }}
                         className="overflow-hidden"
                       >
-                        <p className="max-w-2xl pb-6 pl-[2.5rem] text-sm leading-relaxed text-white/60">
+                        <p className="max-w-2xl pb-5 pl-0 text-sm leading-relaxed text-white/60 sm:pb-6 sm:pl-[2.5rem]">
                           {item.answer}
                         </p>
                       </motion.div>

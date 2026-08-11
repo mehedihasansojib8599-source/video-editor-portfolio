@@ -37,31 +37,31 @@ export function Hero() {
         }}
       />
 
-      {/* ---- Ambient glow orbs ---- */}
+      {/* ---- Ambient glow orbs — smaller/softer on mobile so they don't overpower a narrow screen ---- */}
       <motion.div
-        className="pointer-events-none absolute -left-32 top-20 h-96 w-96 rounded-full bg-accent/20 blur-[120px]"
+        className="pointer-events-none absolute -left-32 top-20 h-56 w-56 rounded-full bg-accent/20 blur-[60px] sm:h-96 sm:w-96 sm:blur-[120px]"
         animate={{ opacity: [0.7, 1, 0.7], scale: [1, 1.08, 1] }}
         transition={{ repeat: Infinity, duration: 8, ease: 'easeInOut' }}
       />
       <motion.div
-        className="pointer-events-none absolute right-0 top-1/3 h-[28rem] w-[28rem] rounded-full bg-teal-400/10 blur-[140px]"
+        className="pointer-events-none absolute right-0 top-1/3 h-72 w-72 rounded-full bg-teal-400/10 blur-[70px] sm:h-[28rem] sm:w-[28rem] sm:blur-[140px]"
         animate={{ opacity: [0.6, 1, 0.6], scale: [1, 1.06, 1] }}
         transition={{ repeat: Infinity, duration: 10, ease: 'easeInOut', delay: 1 }}
       />
       <motion.div
-        className="pointer-events-none absolute bottom-0 left-1/3 h-72 w-72 rounded-full bg-accent/10 blur-[100px]"
+        className="pointer-events-none absolute bottom-0 left-1/3 h-48 w-48 rounded-full bg-accent/10 blur-[50px] sm:h-72 sm:w-72 sm:blur-[100px]"
         animate={{ opacity: [0.5, 0.9, 0.5] }}
         transition={{ repeat: Infinity, duration: 7, ease: 'easeInOut', delay: 0.5 }}
       />
 
-      <div className="section relative z-10 grid grid-cols-1 items-center gap-12 py-10 lg:grid-cols-2">
+      <div className="section relative z-10 grid grid-cols-1 items-center gap-8 py-8 sm:gap-12 sm:py-10 lg:grid-cols-2">
         {/* ---------------- LEFT: text content ---------------- */}
         <div>
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: EASE }}
-            className="section-eyebrow inline-flex items-center gap-2 rounded-full border border-line/60 bg-white/[0.02] px-3.5 py-1.5 backdrop-blur-sm"
+            className="section-eyebrow inline-flex items-center gap-2 rounded-full border border-line/60 bg-white/[0.02] px-3.5 py-1.5 text-[11px] backdrop-blur-sm sm:text-xs"
           >
             <span className="relative flex h-1.5 w-1.5">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent/60" />
@@ -74,7 +74,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.12, ease: EASE }}
-            className="mt-6 max-w-2xl whitespace-pre-line font-display text-5xl font-medium leading-[1.05] tracking-tight sm:text-6xl"
+            className="mt-5 max-w-2xl whitespace-pre-line font-display text-4xl font-medium leading-[1.08] tracking-tight sm:mt-6 sm:text-5xl sm:leading-[1.05] md:text-6xl"
           >
             <span className="text-ink">Professional</span>
             <br />
@@ -87,7 +87,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.24, ease: EASE }}
-            className="mt-6 max-w-xl text-lg leading-relaxed text-ink-muted"
+            className="mt-5 max-w-xl text-base leading-relaxed text-ink-muted sm:mt-6 sm:text-lg"
           >
             I edit{' '}
             <span className="font-semibold bg-gradient-to-r from-accent to-amber-300 bg-clip-text text-transparent">
@@ -119,12 +119,12 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.36, ease: EASE }}
-            className="mt-10 flex flex-wrap items-center gap-4"
+            className="mt-8 flex flex-wrap items-center gap-3 sm:mt-10 sm:gap-4"
           >
             <a
               href={hero.primaryButton.href}
               data-cursor-hover
-              className="group relative overflow-hidden rounded-full bg-gradient-to-r from-accent via-amber-300 to-accent bg-[length:200%_100%] bg-[position:0%_0%] px-8 py-3.5 text-sm font-semibold text-bg shadow-[0_0_30px_-6px_theme(colors.accent)] transition-all duration-500 hover:bg-[position:100%_0%] hover:shadow-[0_0_50px_-4px_theme(colors.accent)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]"
+              className="group relative overflow-hidden rounded-full bg-gradient-to-r from-accent via-amber-300 to-accent bg-[length:200%_100%] bg-[position:0%_0%] px-6 py-3 text-sm font-semibold text-bg shadow-[0_0_30px_-6px_theme(colors.accent)] transition-all duration-500 hover:bg-[position:100%_0%] hover:shadow-[0_0_50px_-4px_theme(colors.accent)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] sm:px-8 sm:py-3.5"
             >
               <span className="relative z-10 flex items-center gap-2">
                 {hero.primaryButton.label}
@@ -143,7 +143,7 @@ export function Hero() {
             >
               <span className="absolute inset-0 rounded-full bg-gradient-to-r from-accent/0 via-teal-300/0 to-accent/0 opacity-0 transition-opacity duration-500 group-hover:from-accent group-hover:via-teal-300 group-hover:to-accent group-hover:opacity-100" />
               <span className="absolute inset-0 rounded-full border border-line transition-opacity duration-500 group-hover:opacity-0" />
-              <span className="relative flex items-center gap-2 rounded-full bg-bg/80 px-7 py-3.5 text-sm font-medium text-ink backdrop-blur-sm transition-colors duration-300 group-hover:text-accent">
+              <span className="relative flex items-center gap-2 rounded-full bg-bg/80 px-6 py-3 text-sm font-medium text-ink backdrop-blur-sm transition-colors duration-300 group-hover:text-accent sm:px-7 sm:py-3.5">
                 {hero.secondaryButton.label}
               </span>
             </a>
@@ -153,7 +153,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.48, ease: EASE }}
-            className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-line/40 pt-6 text-xs uppercase tracking-widest text-ink-faint"
+            className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-line/40 pt-5 text-[11px] uppercase tracking-widest text-ink-faint sm:mt-12 sm:gap-x-8 sm:gap-y-3 sm:pt-6 sm:text-xs"
           >
             <span className="flex items-center gap-2">
               <span className="h-1 w-1 rounded-full bg-accent" /> 200+ Videos Edited
@@ -172,7 +172,7 @@ export function Hero() {
           initial={{ opacity: 0, scale: 0.96, y: 10 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.85, delay: 0.2, ease: EASE }}
-          className="relative mx-auto w-full max-w-[440px] px-2 py-4 sm:max-w-[480px] lg:max-w-[520px]"
+          className="relative mx-auto w-full max-w-[320px] px-2 py-4 sm:max-w-[440px] md:max-w-[480px] lg:max-w-[520px]"
         >
           <motion.div
             className="absolute inset-4 -z-10 rounded-[28px] bg-gradient-to-br from-accent/30 via-transparent to-teal-400/30 blur-2xl"
@@ -240,9 +240,9 @@ export function Hero() {
               />
             </svg>
 
-            {/* ---- floating software-icon badges — premium glow version ---- */}
+            {/* ---- floating software-icon badges — smaller on mobile ---- */}
             <motion.div
-              className="absolute -right-4 -top-4 z-20 flex h-11 w-11 items-center justify-center rounded-xl border border-violet-300/30 bg-[#1a0e33]/90 text-sm font-bold text-violet-200 backdrop-blur-md"
+              className="absolute -right-3 -top-3 z-20 flex h-9 w-9 items-center justify-center rounded-lg border border-violet-300/30 bg-[#1a0e33]/90 text-xs font-bold text-violet-200 backdrop-blur-md sm:-right-4 sm:-top-4 sm:h-11 sm:w-11 sm:rounded-xl sm:text-sm"
               style={{
                 boxShadow:
                   '0 0 0 1px rgba(167,139,250,0.15), 0 4px 20px -4px rgba(167,139,250,0.5), 0 0 30px -6px rgba(167,139,250,0.6), 0 8px 24px -6px rgba(0,0,0,0.6)',
@@ -257,12 +257,12 @@ export function Hero() {
               }}
               transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }}
             >
-              <span className="absolute inset-0 -z-10 rounded-xl bg-violet-400/40 blur-lg" />
+              <span className="absolute inset-0 -z-10 rounded-lg bg-violet-400/40 blur-lg sm:rounded-xl" />
               Ae
             </motion.div>
 
             <motion.div
-              className="absolute -bottom-4 -left-4 z-20 flex h-11 w-11 items-center justify-center rounded-xl border border-indigo-300/30 bg-[#1a0e33]/90 text-sm font-bold text-indigo-200 backdrop-blur-md"
+              className="absolute -bottom-3 -left-3 z-20 flex h-9 w-9 items-center justify-center rounded-lg border border-indigo-300/30 bg-[#1a0e33]/90 text-xs font-bold text-indigo-200 backdrop-blur-md sm:-bottom-4 sm:-left-4 sm:h-11 sm:w-11 sm:rounded-xl sm:text-sm"
               style={{
                 boxShadow:
                   '0 0 0 1px rgba(129,140,248,0.15), 0 4px 20px -4px rgba(129,140,248,0.5), 0 0 30px -6px rgba(129,140,248,0.6), 0 8px 24px -6px rgba(0,0,0,0.6)',
@@ -277,11 +277,11 @@ export function Hero() {
               }}
               transition={{ repeat: Infinity, duration: 4.5, ease: 'easeInOut', delay: 0.5 }}
             >
-              <span className="absolute inset-0 -z-10 rounded-xl bg-indigo-400/40 blur-lg" />
+              <span className="absolute inset-0 -z-10 rounded-lg bg-indigo-400/40 blur-lg sm:rounded-xl" />
               Pr
             </motion.div>
 
-            <div className="relative flex h-[420px] flex-col overflow-hidden rounded-[22px] border border-white/5 bg-black/70 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.7)] sm:h-[460px] lg:h-[500px]">
+            <div className="relative flex h-[320px] flex-col overflow-hidden rounded-[22px] border border-white/5 bg-black/70 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.7)] sm:h-[420px] md:h-[460px] lg:h-[500px]">
               <div className="relative flex-1 overflow-hidden">
                 <video
                   className="h-full w-full object-cover transition-transform duration-[3000ms] ease-out hover:scale-105"
@@ -324,7 +324,7 @@ export function Hero() {
       </div>
 
       {/* Signature: timeline scrubber footer */}
-      <div className="absolute inset-x-0 bottom-0 z-10 flex items-center justify-between border-t border-line/60 bg-gradient-to-t from-bg/60 to-transparent px-6 py-4 font-mono text-[11px] uppercase tracking-widest text-ink-faint md:px-10">
+      <div className="absolute inset-x-0 bottom-0 z-10 flex items-center justify-between border-t border-line/60 bg-gradient-to-t from-bg/60 to-transparent px-4 py-3 font-mono text-[10px] uppercase tracking-widest text-ink-faint sm:px-6 sm:py-4 sm:text-[11px] md:px-10">
         <span className="timecode">00:00:00:00</span>
         <motion.div
           initial={{ opacity: 0 }}

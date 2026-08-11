@@ -23,7 +23,7 @@ function CountUp({ value, suffix }: { value: number; suffix: string }) {
   }, [inView, value]);
 
   return (
-    <span ref={ref} className="font-display text-4xl text-ink md:text-5xl">
+    <span ref={ref} className="font-display text-3xl text-ink sm:text-4xl md:text-5xl">
       {display.toLocaleString()}
       {suffix}
     </span>
@@ -34,7 +34,7 @@ function CountUp({ value, suffix }: { value: number; suffix: string }) {
 export function Stats() {
   return (
     <section className="border-y border-line bg-bg-surface/40">
-      <div className="section grid grid-cols-2 gap-10 md:grid-cols-4">
+      <div className="section grid grid-cols-2 gap-6 sm:gap-10 md:grid-cols-4">
         {siteConfig.stats.map((stat, i) => (
           <motion.div
             key={stat.label}
@@ -44,7 +44,7 @@ export function Stats() {
             transition={{ duration: 0.5, delay: i * 0.06 }}
           >
             <CountUp value={stat.value} suffix={stat.suffix} />
-            <p className="mt-2 text-sm text-ink-muted">{stat.label}</p>
+            <p className="mt-1.5 text-xs text-ink-muted sm:mt-2 sm:text-sm">{stat.label}</p>
           </motion.div>
         ))}
       </div>

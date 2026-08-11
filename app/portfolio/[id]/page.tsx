@@ -45,37 +45,37 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
   const related = getRelatedProjects(project);
 
   return (
-    <article className="pt-32">
+    <article className="pt-24 sm:pt-32">
       <div className="section pt-0">
         <Link
           href="/#portfolio"
-          className="mb-8 inline-flex items-center gap-2 text-sm text-ink-muted transition-colors hover:text-ink"
+          className="mb-6 inline-flex items-center gap-2 text-sm text-ink-muted transition-colors hover:text-ink sm:mb-8"
         >
           <ArrowLeft size={16} /> Back to portfolio
         </Link>
 
-        <div className="flex flex-wrap items-start justify-between gap-6">
+        <div className="flex flex-wrap items-start justify-between gap-5 sm:gap-6">
           <div>
             <p className="timecode text-xs uppercase tracking-widest text-accent">
               {project.category}
             </p>
-            <h1 className="mt-3 max-w-2xl font-display text-4xl font-medium tracking-tight text-ink md:text-5xl">
+            <h1 className="mt-3 max-w-2xl font-display text-3xl font-medium tracking-tight text-ink sm:text-4xl md:text-5xl">
               {project.title}
             </h1>
-            <p className="mt-4 max-w-xl text-ink-muted">{project.description}</p>
+            <p className="mt-4 max-w-xl text-sm text-ink-muted sm:text-base">{project.description}</p>
           </div>
           <ShareButton title={project.title} />
         </div>
 
         {/* ---------------- Cover image — smaller, colorful, premium framed ---------------- */}
         {project.coverImage && (
-          <div className="relative mx-auto mt-10 w-full max-w-3xl">
-            {/* ambient color glow behind the frame */}
-            <div className="pointer-events-none absolute -inset-6 -z-10 rounded-[32px] bg-gradient-to-br from-accent/25 via-teal-400/15 to-purple-500/20 blur-3xl" />
+          <div className="relative mx-auto mt-8 w-full max-w-3xl sm:mt-10">
+            {/* ambient color glow behind the frame — smaller on mobile */}
+            <div className="pointer-events-none absolute -inset-3 -z-10 rounded-2xl bg-gradient-to-br from-accent/25 via-teal-400/15 to-purple-500/20 blur-xl sm:-inset-6 sm:rounded-[32px] sm:blur-3xl" />
 
             {/* gradient border wrapper */}
-            <div className="relative rounded-[22px] bg-gradient-to-br from-accent via-teal-300 to-purple-400 p-[1.5px] shadow-[0_20px_60px_-20px_rgba(0,0,0,0.7)]">
-              <div className="relative aspect-video w-full overflow-hidden rounded-[20px] bg-black">
+            <div className="relative rounded-2xl bg-gradient-to-br from-accent via-teal-300 to-purple-400 p-[1.5px] shadow-[0_20px_60px_-20px_rgba(0,0,0,0.7)] sm:rounded-[22px]">
+              <div className="relative aspect-video w-full overflow-hidden rounded-[14px] bg-black sm:rounded-[20px]">
                 <Image
                   src={project.coverImage}
                   alt={project.title}
@@ -89,15 +89,15 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                 <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_60px_rgba(0,0,0,0.35)]" />
 
                 {/* category chip on the image */}
-                <span className="absolute left-4 top-4 rounded-full border border-white/20 bg-black/50 px-3 py-1 text-[11px] font-medium uppercase tracking-widest text-white backdrop-blur-sm">
+                <span className="absolute left-3 top-3 rounded-full border border-white/20 bg-black/50 px-2.5 py-1 text-[10px] font-medium uppercase tracking-widest text-white backdrop-blur-sm sm:left-4 sm:top-4 sm:px-3 sm:text-[11px]">
                   {project.category}
                 </span>
               </div>
             </div>
 
             {/* corner accent dots — small premium detail */}
-            <div className="absolute -right-2 -top-2 h-4 w-4 rounded-full border border-white/10 bg-gradient-to-br from-accent to-purple-400 shadow-[0_0_16px_-2px_rgba(242,166,90,0.8)]" />
-            <div className="absolute -bottom-2 -left-2 h-4 w-4 rounded-full border border-white/10 bg-gradient-to-br from-teal-300 to-accent shadow-[0_0_16px_-2px_rgba(94,234,212,0.8)]" />
+            <div className="absolute -right-1.5 -top-1.5 h-3 w-3 rounded-full border border-white/10 bg-gradient-to-br from-accent to-purple-400 shadow-[0_0_16px_-2px_rgba(242,166,90,0.8)] sm:-right-2 sm:-top-2 sm:h-4 sm:w-4" />
+            <div className="absolute -bottom-1.5 -left-1.5 h-3 w-3 rounded-full border border-white/10 bg-gradient-to-br from-teal-300 to-accent shadow-[0_0_16px_-2px_rgba(94,234,212,0.8)] sm:-bottom-2 sm:-left-2 sm:h-4 sm:w-4" />
           </div>
         )}
 
@@ -106,19 +106,19 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
           <VideoPlayer video={project.video} title={project.title} />
         </div>
 
-        <div className="mt-16 grid gap-16 md:grid-cols-[2fr_1fr]">
+        <div className="mt-10 grid gap-10 sm:mt-16 sm:gap-16 md:grid-cols-[2fr_1fr]">
           <div>
             {project.longDescription && (
               <>
                 <p className="section-eyebrow">Project Notes</p>
-                <p className="max-w-2xl leading-relaxed text-ink-muted">
+                <p className="max-w-2xl text-sm leading-relaxed text-ink-muted sm:text-base">
                   {project.longDescription}
                 </p>
               </>
             )}
 
             {project.beforeImage && project.afterImage && (
-              <div className="mt-12">
+              <div className="mt-10 sm:mt-12">
                 <BeforeAfterSlider
                   before={project.beforeImage}
                   after={project.afterImage}
@@ -129,7 +129,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
           </div>
 
           {/* Meta panel */}
-          <aside className="h-fit space-y-6 rounded-2xl border border-line bg-bg-surface p-6">
+          <aside className="h-fit space-y-5 rounded-2xl border border-line bg-bg-surface p-5 sm:space-y-6 sm:p-6">
             <MetaRow label="Client" value={project.client} />
             <MetaRow label="Duration" value={project.duration} />
             <MetaRow label="Platform" value={project.platform} />
@@ -214,7 +214,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
       {related.length > 0 && (
         <div className="section pt-0">
           <p className="section-eyebrow">Related Projects</p>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-5 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {related.map((p, i) => (
               <PortfolioCard key={p.id} project={p} index={i} />
             ))}

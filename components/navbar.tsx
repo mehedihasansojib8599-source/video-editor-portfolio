@@ -21,16 +21,16 @@ export function Navbar() {
     <header
       className={cn(
         'fixed inset-x-0 top-0 z-50 transition-all duration-300',
-        scrolled ? 'glass py-3 shadow-[0_4px_30px_-10px_rgba(249,115,22,0.15)]' : 'bg-transparent py-6'
+        scrolled ? 'glass py-2.5 shadow-[0_4px_30px_-10px_rgba(249,115,22,0.15)] sm:py-3' : 'bg-transparent py-4 sm:py-6'
       )}
     >
       {/* subtle top glow line */}
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-orange-400/40 to-transparent" />
 
-      <nav className="relative mx-auto flex max-w-7xl items-center justify-between px-6 md:px-10">
+      <nav className="relative mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 md:px-10">
         {/* ---- LOGO: edit siteConfig.logoText / siteConfig.siteName in data/site-config.ts ---- */}
         <Link href="/" className="group flex items-baseline gap-2">
-          <span className="font-display bg-gradient-to-r from-orange-300 via-yellow-200 to-teal-300 bg-clip-text text-xl font-semibold tracking-tight text-transparent transition-all duration-300 group-hover:drop-shadow-[0_0_12px_rgba(249,115,22,0.5)]">
+          <span className="font-display bg-gradient-to-r from-orange-300 via-yellow-200 to-teal-300 bg-clip-text text-lg font-semibold tracking-tight text-transparent transition-all duration-300 group-hover:drop-shadow-[0_0_12px_rgba(249,115,22,0.5)] sm:text-xl">
             {siteConfig.logoText}
           </span>
           <span className="hidden font-mono text-[11px] uppercase tracking-widest text-ink-muted sm:inline">
@@ -76,12 +76,12 @@ export function Navbar() {
         </div>
 
         <button
-          className="text-ink transition-colors hover:text-orange-300 md:hidden"
+          className="flex h-10 w-10 items-center justify-center text-ink transition-colors hover:text-orange-300 md:hidden"
           onClick={() => setOpen((o) => !o)}
           aria-label={open ? 'Close menu' : 'Open menu'}
           aria-expanded={open}
         >
-          {open ? <X size={24} /> : <Menu size={24} />}
+          {open ? <X size={22} /> : <Menu size={22} />}
         </button>
       </nav>
 
@@ -93,7 +93,7 @@ export function Navbar() {
             exit={{ height: 0, opacity: 0 }}
             className="overflow-hidden md:hidden"
           >
-            <div className="flex flex-col gap-1 border-t border-white/10 bg-gradient-to-b from-white/[0.03] to-transparent px-6 py-4">
+            <div className="flex flex-col gap-1 border-t border-white/10 bg-gradient-to-b from-white/[0.03] to-transparent px-4 py-4 sm:px-6">
               {siteConfig.navLinks.map((link) => (
                 <a
                   key={link.href}

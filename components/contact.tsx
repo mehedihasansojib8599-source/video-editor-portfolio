@@ -54,11 +54,12 @@ export function Contact() {
         }}
       />
 
-      {/* ---- Premium ambient glow orbs ---- */}
-      <div className="pointer-events-none absolute -left-32 bottom-0 h-96 w-96 rounded-full bg-accent/20 blur-[120px]" />
-      <div className="pointer-events-none absolute right-0 top-0 h-[28rem] w-[28rem] rounded-full bg-teal-400/15 blur-[140px]" />
+      {/* ---- Premium ambient glow orbs — smaller/softer on mobile so they
+             don't overpower a narrow screen ---- */}
+      <div className="pointer-events-none absolute -left-32 bottom-0 h-56 w-56 rounded-full bg-accent/20 blur-[60px] sm:h-96 sm:w-96 sm:blur-[120px]" />
+      <div className="pointer-events-none absolute right-0 top-0 h-64 w-64 rounded-full bg-teal-400/15 blur-[70px] sm:h-[28rem] sm:w-[28rem] sm:blur-[140px]" />
 
-      <div className="relative z-10 grid gap-16 md:grid-cols-2 md:items-stretch">
+      <div className="relative z-10 grid gap-12 md:grid-cols-2 md:items-stretch md:gap-16">
         <div className="flex flex-col justify-between">
         <div>
           <motion.p
@@ -77,7 +78,7 @@ export function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-display text-3xl font-medium tracking-tight md:text-4xl"
+            className="font-display text-2xl font-medium tracking-tight sm:text-3xl md:text-4xl"
           >
             <span className="bg-gradient-to-r from-accent via-amber-300 to-teal-300 bg-clip-text text-transparent">
               Have footage that needs a story?
@@ -89,7 +90,7 @@ export function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.15 }}
-            className="mt-4 max-w-sm text-ink-muted"
+            className="mt-4 max-w-sm text-sm text-ink-muted sm:text-base"
           >
             {siteConfig.contact.availability}
           </motion.p>
@@ -99,7 +100,7 @@ export function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-10 space-y-3"
+            className="mt-8 space-y-3 sm:mt-10"
           >
             <div
               className="rounded-xl p-[1.5px] transition-all duration-300 hover:scale-[1.01]"
@@ -110,12 +111,12 @@ export function Contact() {
             >
               <a
                 href={`mailto:${siteConfig.contact.email}`}
-                className="group flex items-center gap-3 rounded-[10px] bg-bg-surface/90 px-4 py-3 text-ink-muted backdrop-blur-sm transition-colors duration-300 hover:text-ink"
+                className="group flex items-center gap-3 rounded-[10px] bg-bg-surface/90 px-4 py-3 text-sm text-ink-muted backdrop-blur-sm transition-colors duration-300 hover:text-ink sm:text-base"
               >
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-accent/15 text-accent shadow-[0_0_15px_-3px_theme(colors.accent)] transition-transform duration-300 group-hover:scale-110">
                   <Mail size={16} />
                 </span>
-                {siteConfig.contact.email}
+                <span className="truncate">{siteConfig.contact.email}</span>
               </a>
             </div>
 
@@ -130,7 +131,7 @@ export function Contact() {
                 href="https://wa.me/8801754815099?text=Hi%20Mehedi,%20I%20want%20to%20hire%20you."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center gap-3 rounded-[10px] bg-bg-surface/90 px-4 py-3 text-ink-muted backdrop-blur-sm transition-colors duration-300 hover:text-green-400"
+                className="group flex items-center gap-3 rounded-[10px] bg-bg-surface/90 px-4 py-3 text-sm text-ink-muted backdrop-blur-sm transition-colors duration-300 hover:text-green-400 sm:text-base"
               >
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-green-500/15 text-green-400 shadow-[0_0_15px_-3px_rgba(34,197,94,0.7)] transition-transform duration-300 group-hover:scale-110">
                   <MessageCircle size={16} />
@@ -148,7 +149,7 @@ export function Contact() {
             >
               <a
                 href={`tel:${siteConfig.contact.phone}`}
-                className="group flex items-center gap-3 rounded-[10px] bg-bg-surface/90 px-4 py-3 text-ink-muted backdrop-blur-sm transition-colors duration-300 hover:text-ink"
+                className="group flex items-center gap-3 rounded-[10px] bg-bg-surface/90 px-4 py-3 text-sm text-ink-muted backdrop-blur-sm transition-colors duration-300 hover:text-ink sm:text-base"
               >
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-teal-400/15 text-teal-300 shadow-[0_0_15px_-3px_theme(colors.teal.400)] transition-transform duration-300 group-hover:scale-110">
                   <Phone size={16} />
@@ -164,7 +165,7 @@ export function Contact() {
                   'linear-gradient(135deg, #FBBF24, #FBBF2433 35%, #FBBF2433 65%, #FBBF24)',
               }}
             >
-              <p className="flex items-center gap-3 rounded-[10px] bg-bg-surface/90 px-4 py-3 text-ink-muted backdrop-blur-sm">
+              <p className="flex items-center gap-3 rounded-[10px] bg-bg-surface/90 px-4 py-3 text-sm text-ink-muted backdrop-blur-sm sm:text-base">
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-amber-400/15 text-amber-300 shadow-[0_0_15px_-3px_rgba(251,191,36,0.7)]">
                   <MapPin size={16} />
                 </span>
@@ -179,7 +180,7 @@ export function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.25 }}
-            className="mt-10 flex flex-wrap gap-4"
+            className="mt-8 flex flex-wrap gap-3 sm:mt-10 sm:gap-4"
           >
             {siteConfig.socials.map((s) => {
               const color = socialColors[s.name] ?? '#ffffff';
@@ -190,7 +191,7 @@ export function Contact() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.name}
-                  className="flex h-12 w-12 items-center justify-center rounded-full border transition-all duration-300 hover:-translate-y-1 hover:scale-110"
+                  className="flex h-11 w-11 items-center justify-center rounded-full border transition-all duration-300 hover:-translate-y-1 hover:scale-110 sm:h-12 sm:w-12"
                   style={{
                     color,
                     borderColor: `${color}40`,
@@ -228,11 +229,11 @@ export function Contact() {
               'linear-gradient(135deg, rgba(255,255,255,0.16), rgba(255,255,255,0.02) 30%, rgba(255,255,255,0.02) 70%, rgba(255,255,255,0.16))',
           }}
         >
-          {/* glow behind the card */}
-          <div className="pointer-events-none absolute -inset-6 -z-10 rounded-[28px] bg-gradient-to-br from-accent/25 via-transparent to-teal-400/25 blur-2xl" />
+          {/* glow behind the card — smaller on mobile */}
+          <div className="pointer-events-none absolute -inset-4 -z-10 rounded-3xl bg-gradient-to-br from-accent/25 via-transparent to-teal-400/25 blur-xl sm:-inset-6 sm:rounded-[28px] sm:blur-2xl" />
 
-          <div className="glass rounded-2xl p-8">
-            <div className="space-y-5">
+          <div className="glass rounded-2xl p-5 sm:p-8">
+            <div className="space-y-4 sm:space-y-5">
               <div>
                 <label htmlFor="name" className="mb-2 block text-sm text-ink-muted">
                   Name

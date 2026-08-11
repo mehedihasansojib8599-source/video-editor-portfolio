@@ -69,9 +69,14 @@ body {
   letter-spacing: 0.08em;
 }
 
-/* ---- Section container ------------------------------------------------------ */
+/* ---- Section container ------------------------------------------------------
+   Mobile gets noticeably tighter vertical padding (py-16) than desktop
+   (py-32) — this one class controls spacing for nearly every section on the
+   site, so tuning it here is the single highest-leverage mobile fix: it
+   shrinks the "empty space" feeling across the whole page at once instead of
+   needing per-section overrides. */
 .section {
-  @apply mx-auto w-full max-w-7xl px-6 py-24 md:px-10 md:py-32;
+  @apply mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 sm:py-20 md:px-10 md:py-32;
 }
 
 .section-eyebrow {
