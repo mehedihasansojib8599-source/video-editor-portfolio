@@ -37,21 +37,28 @@ export function Hero() {
         }}
       />
 
-      {/* ---- Ambient glow orbs — smaller/softer on mobile so they don't overpower a narrow screen ---- */}
+      {/* ---- Ambient glow orbs — richer, more saturated colors for a premium
+             glow, smaller/softer on mobile so they don't overpower a narrow
+             screen ---- */}
       <motion.div
-        className="pointer-events-none absolute -left-32 top-20 h-56 w-56 rounded-full bg-accent/20 blur-[60px] sm:h-96 sm:w-96 sm:blur-[120px]"
+        className="pointer-events-none absolute -left-32 top-20 h-56 w-56 rounded-full bg-accent/35 blur-[60px] sm:h-96 sm:w-96 sm:blur-[130px]"
         animate={{ opacity: [0.7, 1, 0.7], scale: [1, 1.08, 1] }}
         transition={{ repeat: Infinity, duration: 8, ease: 'easeInOut' }}
       />
       <motion.div
-        className="pointer-events-none absolute right-0 top-1/3 h-72 w-72 rounded-full bg-teal-400/10 blur-[70px] sm:h-[28rem] sm:w-[28rem] sm:blur-[140px]"
+        className="pointer-events-none absolute right-0 top-1/3 h-72 w-72 rounded-full bg-teal-400/25 blur-[70px] sm:h-[28rem] sm:w-[28rem] sm:blur-[150px]"
         animate={{ opacity: [0.6, 1, 0.6], scale: [1, 1.06, 1] }}
         transition={{ repeat: Infinity, duration: 10, ease: 'easeInOut', delay: 1 }}
       />
       <motion.div
-        className="pointer-events-none absolute bottom-0 left-1/3 h-48 w-48 rounded-full bg-accent/10 blur-[50px] sm:h-72 sm:w-72 sm:blur-[100px]"
+        className="pointer-events-none absolute bottom-0 left-1/3 h-48 w-48 rounded-full bg-accent/20 blur-[50px] sm:h-72 sm:w-72 sm:blur-[110px]"
         animate={{ opacity: [0.5, 0.9, 0.5] }}
         transition={{ repeat: Infinity, duration: 7, ease: 'easeInOut', delay: 0.5 }}
+      />
+      <motion.div
+        className="pointer-events-none absolute right-1/4 bottom-10 h-40 w-40 rounded-full bg-purple-500/20 blur-[50px] sm:h-64 sm:w-64 sm:blur-[100px]"
+        animate={{ opacity: [0.4, 0.8, 0.4], scale: [1, 1.1, 1] }}
+        transition={{ repeat: Infinity, duration: 9, ease: 'easeInOut', delay: 1.5 }}
       />
 
       <div className="section relative z-10 grid grid-cols-1 items-center gap-8 py-8 pb-12 sm:gap-12 sm:py-10 sm:pb-16 lg:grid-cols-2 lg:pb-20">
@@ -61,7 +68,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: EASE }}
-            className="section-eyebrow inline-flex items-center gap-2 rounded-full border border-line/60 bg-white/[0.02] px-3.5 py-1.5 text-[11px] backdrop-blur-sm sm:text-xs"
+            className="section-eyebrow inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/[0.06] px-3.5 py-1.5 text-[11px] shadow-[0_0_25px_-8px_theme(colors.accent)] backdrop-blur-sm sm:text-xs"
           >
             <span className="relative flex h-1.5 w-1.5">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent/60" />
@@ -78,7 +85,7 @@ export function Hero() {
           >
             <span className="text-ink">Professional</span>
             <br />
-            <span className="bg-gradient-to-r from-accent via-amber-300 to-teal-300 bg-[length:200%_100%] bg-clip-text text-transparent [animation:gradient-pan_6s_ease-in-out_infinite]">
+            <span className="relative bg-gradient-to-r from-accent via-amber-300 to-teal-300 bg-[length:200%_100%] bg-clip-text text-transparent drop-shadow-[0_0_35px_rgba(242,166,90,0.35)] [animation:gradient-pan_6s_ease-in-out_infinite]">
               YouTube Video Editor
             </span>
           </motion.h1>

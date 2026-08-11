@@ -323,7 +323,7 @@ export function Skills() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3, ease: EASE }}
-            className="mt-8 grid grid-cols-2 gap-2.5 sm:gap-3 sm:grid-cols-3"
+            className="mt-8 hidden grid-cols-2 gap-2.5 sm:gap-3 md:grid md:grid-cols-3"
           >
             {toolBrandStyles.map((tool, i) => (
               <motion.div

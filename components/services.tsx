@@ -30,8 +30,9 @@ export function Services() {
     <section id="services" className="section relative overflow-hidden">
       {/* Layered premium glow — matches Portfolio/Skills sections.
           Smaller/softer on mobile so it doesn't overpower a narrow screen. */}
-      <div className="pointer-events-none absolute -top-24 right-[-6rem] h-56 w-56 rounded-full bg-gradient-to-br from-orange-500/25 via-yellow-400/10 to-transparent blur-[60px] sm:h-96 sm:w-96 sm:blur-[100px]" />
-      <div className="pointer-events-none absolute top-32 left-[-4rem] h-56 w-56 rounded-full bg-gradient-to-tr from-teal-400/20 via-transparent to-transparent blur-[60px] sm:h-72 sm:w-72 sm:blur-[100px]" />
+      <div className="pointer-events-none absolute -top-24 right-[-6rem] h-56 w-56 rounded-full bg-gradient-to-br from-orange-500/40 via-yellow-400/20 to-transparent blur-[60px] sm:h-96 sm:w-96 sm:blur-[110px]" />
+      <div className="pointer-events-none absolute top-32 left-[-4rem] h-56 w-56 rounded-full bg-gradient-to-tr from-teal-400/35 via-transparent to-transparent blur-[60px] sm:h-72 sm:w-72 sm:blur-[110px]" />
+      <div className="pointer-events-none absolute bottom-0 left-1/2 h-40 w-40 -translate-x-1/2 rounded-full bg-purple-500/15 blur-[60px] sm:h-64 sm:w-64 sm:blur-[100px]" />
 
       {/* Faint grid texture for depth */}
       <div
@@ -44,7 +45,7 @@ export function Services() {
       />
 
       <div className="relative">
-        <div className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-gradient-to-r from-orange-500/10 to-transparent px-4 py-1.5 shadow-[0_0_20px_-8px_rgba(249,115,22,0.5)]">
+        <div className="inline-flex items-center gap-2 rounded-full border border-orange-500/50 bg-gradient-to-r from-orange-500/20 to-transparent px-4 py-1.5 shadow-[0_0_28px_-6px_rgba(249,115,22,0.7)]">
           <span className="relative flex h-1.5 w-1.5">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-orange-400 opacity-75" />
             <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-orange-500" />
@@ -65,9 +66,9 @@ export function Services() {
           // grid reads as colorful as a whole, not just on the top border.
           const leanTeal = i % 2 === 1;
           const iconWrapClass = leanTeal
-            ? 'bg-gradient-to-br from-teal/20 to-accent/10 ring-teal/20 group-hover:from-teal/30 group-hover:to-accent/20'
-            : 'bg-gradient-to-br from-accent/20 to-teal/10 ring-accent/20 group-hover:from-accent/30 group-hover:to-teal/20';
-          const iconGlowClass = leanTeal ? 'bg-teal/25' : 'bg-accent/25';
+            ? 'bg-gradient-to-br from-teal/35 to-accent/15 ring-teal/40 group-hover:from-teal/50 group-hover:to-accent/30'
+            : 'bg-gradient-to-br from-accent/35 to-teal/15 ring-accent/40 group-hover:from-accent/50 group-hover:to-teal/30';
+          const iconGlowClass = leanTeal ? 'bg-teal/40' : 'bg-accent/40';
           const iconColorClass = leanTeal ? 'text-teal' : 'text-accent';
 
           return (
@@ -80,11 +81,11 @@ export function Services() {
               className="group relative overflow-hidden bg-bg p-5 transition-all duration-300 hover:-translate-y-1 hover:bg-bg-surface sm:p-8"
             >
               {/* Gradient top-border — always visible, brightens on hover */}
-              <span className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-accent to-teal opacity-60 transition-opacity duration-300 group-hover:opacity-100" />
+              <span className="absolute inset-x-0 top-0 h-[2.5px] bg-gradient-to-r from-accent to-teal opacity-90 shadow-[0_0_12px_rgba(242,166,90,0.5)] transition-opacity duration-300 group-hover:opacity-100" />
 
               {/* Gradient side-border — skipped on the first column so it doesn't double the outer frame */}
               {i % 3 !== 0 && (
-                <span className="absolute inset-y-0 left-0 hidden w-[2px] bg-gradient-to-b from-accent to-teal opacity-40 transition-opacity duration-300 group-hover:opacity-80 sm:block" />
+                <span className="absolute inset-y-0 left-0 w-[2px] bg-gradient-to-b from-accent to-teal opacity-60 transition-opacity duration-300 group-hover:opacity-90" />
               )}
 
               {/* Glowing icon badge — alternates amber/teal for color variety */}
@@ -92,7 +93,7 @@ export function Services() {
                 className={`relative flex h-10 w-10 items-center justify-center rounded-xl ring-1 transition-colors duration-300 sm:h-12 sm:w-12 ${iconWrapClass}`}
               >
                 <div
-                  className={`absolute inset-0 rounded-xl blur-lg opacity-60 transition-opacity duration-300 group-hover:opacity-100 ${iconGlowClass}`}
+                  className={`absolute inset-0 rounded-xl blur-lg opacity-90 transition-opacity duration-300 group-hover:opacity-100 ${iconGlowClass}`}
                 />
                 <Icon className={`relative ${iconColorClass}`} size={20} strokeWidth={1.5} />
               </div>
