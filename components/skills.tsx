@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion';
 import { siteConfig } from '@/data/site-config';
-import { useCountUp } from '@/hooks/use-count-up';
 
 const EASE = [0.21, 0.47, 0.32, 0.98] as const;
 
@@ -53,28 +52,22 @@ const toolBrandStyles = [
 ];
 
 function AverageCounter({ value }: { value: number }) {
-  const { ref, display } = useCountUp(value, 1.4);
   return (
-    <span
-      ref={ref}
-      className="bg-gradient-to-br from-orange-200 via-white to-teal-200 bg-clip-text font-display text-3xl font-medium text-transparent sm:text-4xl"
-    >
-      {display}%
+    <span className="bg-gradient-to-br from-orange-200 via-white to-teal-200 bg-clip-text font-display text-3xl font-medium text-transparent sm:text-4xl">
+      {value}%
     </span>
   );
 }
 
 function SkillRow({ skill, index }: { skill: { name: string; level: number }; index: number }) {
-  const { ref, display } = useCountUp(skill.level, 1);
-
   return (
     <div className="group rounded-xl p-3 -m-3 transition-all duration-300 hover:bg-white/[0.035] hover:-translate-y-0.5">
       <div className="mb-2.5 flex items-center justify-between text-sm">
         <span className="font-medium text-ink transition-colors duration-300 group-hover:text-white">
           {skill.name}
         </span>
-        <span ref={ref} className="timecode text-ink-faint transition-colors duration-300 group-hover:text-accent">
-          {display}%
+        <span className="timecode text-ink-faint transition-colors duration-300 group-hover:text-accent">
+          {skill.level}%
         </span>
       </div>
       <div className="relative h-1.5 w-full overflow-hidden rounded-full bg-bg-surface2">
