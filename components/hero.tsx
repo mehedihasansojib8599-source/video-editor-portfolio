@@ -54,7 +54,7 @@ export function Hero() {
         transition={{ repeat: Infinity, duration: 7, ease: 'easeInOut', delay: 0.5 }}
       />
 
-      <div className="section relative z-10 grid grid-cols-1 items-center gap-8 py-8 sm:gap-12 sm:py-10 lg:grid-cols-2">
+      <div className="section relative z-10 grid grid-cols-1 items-center gap-8 py-8 pb-12 sm:gap-12 sm:py-10 sm:pb-16 lg:grid-cols-2 lg:pb-20">
         {/* ---------------- LEFT: text content ---------------- */}
         <div>
           <motion.p
@@ -147,23 +147,6 @@ export function Hero() {
                 {hero.secondaryButton.label}
               </span>
             </a>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.48, ease: EASE }}
-            className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-line/40 pt-5 text-[11px] uppercase tracking-widest text-ink-faint sm:mt-12 sm:gap-x-8 sm:gap-y-3 sm:pt-6 sm:text-xs"
-          >
-            <span className="flex items-center gap-2">
-              <span className="h-1 w-1 rounded-full bg-accent" /> 200+ Videos Edited
-            </span>
-            <span className="flex items-center gap-2">
-              <span className="h-1 w-1 rounded-full bg-teal-300" /> 1–3 Day Delivery
-            </span>
-            <span className="flex items-center gap-2">
-              <span className="h-1 w-1 rounded-full bg-accent" /> Available for Freelance
-            </span>
           </motion.div>
         </div>
 
