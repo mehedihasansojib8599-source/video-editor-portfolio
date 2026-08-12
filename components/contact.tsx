@@ -33,12 +33,18 @@ const socialColors: Record<string, string> = {
 export function Contact() {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const subject = encodeURIComponent(`Project inquiry from ${form.name}`);
-    const body = encodeURIComponent(`${form.message}\n\n— ${form.name} (${form.email})`);
-    window.location.href = `mailto:${siteConfig.contact.email}?subject=${subject}&body=${body}`;
-  };
+ const handleSubmit = (e: React.FormEvent) => {
+  e.preventDefault();
+
+  const subject = encodeURIComponent(`Project inquiry from ${form.name}`);
+  const body = encodeURIComponent(
+    `${form.message}\n\n— ${form.name} (${form.email})`
+  );
+
+  const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${siteConfig.contact.email}&su=${subject}&body=${body}`;
+
+  window.open(gmailUrl, '_blank');
+};
 
   return (
     <section id="contact" className="section relative overflow-hidden">
