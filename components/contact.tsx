@@ -116,7 +116,7 @@ export function Contact() {
               }}
             >
               <a
-                href={`mailto:${siteConfig.contact.email}`}
+                href={`https://mail.google.com/mail/?view=cm&fs=1&to=${siteConfig.contact.email}`}
                 className="group flex items-center gap-3 rounded-[10px] bg-bg-surface/90 px-4 py-3 text-sm text-ink-muted backdrop-blur-sm transition-colors duration-300 hover:text-ink sm:text-base"
               >
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-accent/15 text-accent shadow-[0_0_15px_-3px_theme(colors.accent)] transition-transform duration-300 group-hover:scale-110">
