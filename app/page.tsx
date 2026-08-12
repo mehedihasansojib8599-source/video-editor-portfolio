@@ -23,12 +23,13 @@ export default function HomePage() {
       <Services />
       <SectionDivider />
       
-      <Software />
+      
       <PortfolioSection />
       <Skills />
       
       
       <Experience />
+      <Software />
       <Process />
 
       <FAQ />
