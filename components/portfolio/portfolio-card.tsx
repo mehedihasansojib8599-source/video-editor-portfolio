@@ -248,12 +248,15 @@ export function PortfolioCard({
   const thumbnail = useResolvedThumbnail(project);
 
   // Reels: mp4 (native <video>), facebook (iframe), and anything flagged
-  // with displayAsReel (e.g. a YouTube Short) all play inline in the card,
-  // toggled by clicking the card — no fullscreen modal.
+  // with displayAsReel: true (e.g. a YouTube Short) all play inline in the
+  // card, toggled by clicking the card — no fullscreen modal. An explicit
+  // displayAsReel: false overrides mp4/facebook back into the normal
+  // (modal-opening) card variant.
   const isReel =
-    project.video?.type === 'mp4' ||
-    project.video?.type === 'facebook' ||
-    project.displayAsReel === true;
+    (project.video?.type === 'mp4' || project.video?.type === 'facebook') &&
+    project.displayAsReel !== false
+      ? true
+      : project.displayAsReel === true;
 
   if (!project.video) {
     return null;

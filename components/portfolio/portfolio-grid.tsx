@@ -56,15 +56,21 @@ export function PortfolioGrid({
     return result;
   }, [projects, category, search, sort]);
 
-  // Reels = mp4, facebook (always play inline in the card), OR anything
-  // explicitly flagged with displayAsReel (e.g. a YouTube Short).
+  // Reels = mp4, facebook (always play inline in the card) UNLESS explicitly
+  // overridden with displayAsReel: false — OR anything explicitly flagged
+  // with displayAsReel: true (e.g. a YouTube Short) even if it isn't mp4/facebook.
   const reels = filtered.filter(
-    (p) => REEL_TYPES.includes(p.video.type) || p.displayAsReel === true
+    (p) =>
+      (REEL_TYPES.includes(p.video.type) && p.displayAsReel !== false) ||
+      p.displayAsReel === true
   );
 
-  // Everything else (youtube, drive, vimeo — opens in the fullscreen modal)
+  // Everything else (youtube, drive, vimeo — opens in the fullscreen modal —
+  // plus any mp4/facebook explicitly set to displayAsReel: false)
   const normalVideos = filtered.filter(
-    (p) => !REEL_TYPES.includes(p.video.type) && p.displayAsReel !== true
+    (p) =>
+      (!REEL_TYPES.includes(p.video.type) && p.displayAsReel !== true) ||
+      p.displayAsReel === false
   );
 
   return (

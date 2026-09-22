@@ -30,11 +30,16 @@
 //   this file, then use that exact string in a project's `category` field.
 //
 // HOW TO SEND A PROJECT TO THE "CINEMATIC REELS" SECTION:
-//   Reels are anything with video.type "mp4" or "facebook" — these always
-//   show in the Reels section automatically. If you want a "youtube" (or
+//   Reels are anything with video.type "mp4" or "facebook" — these show in
+//   the Reels section automatically. If you want a "youtube" (or
 //   "vimeo"/"drive") project to ALSO show in the Reels section instead of
 //   the normal grid — for example a YouTube Short — set `displayAsReel: true`
-//   on that project. Everything else stays in the normal grid as usual.
+//   on that project.
+//
+//   HOW TO KEEP AN mp4/facebook VIDEO OUT OF REELS (in the normal grid
+//   instead, alongside your YouTube/Drive videos):
+//   Set `displayAsReel: false` explicitly on that project. This overrides
+//   the default mp4/facebook → Reels behavior.
 // ============================================================================
 
 // ---- FIELD GUIDE -----------------------------------------------------------
@@ -55,9 +60,7 @@
 // featured      true/false — show in the "Featured" homepage section
 // published     true/false — false hides it from the whole site
 // platform      where the final video lives, e.g. "YouTube", "Instagram"
-// displayAsReel true/false — force a youtube/vimeo/drive project into the
-//               "Cinematic Reels" section (e.g. a YouTube Short). Optional —
-//               mp4/facebook videos go there automatically without this.
+// displayAsReel true/false — see "HOW TO SEND..." / "HOW TO KEEP..." above.
 // beforeImage / afterImage   optional color-grading before/after slider images
 //
 // VIDEO GUIDE — set `video.type` to one of:
@@ -123,8 +126,10 @@ export interface Project {
 
   platform: string;
 
-  /** Force this project into the "Cinematic Reels" section even though its
-   *  video.type is youtube/vimeo/drive (mp4/facebook go there automatically). */
+  /** Force this project into (true) or keep it out of (false) the
+   *  "Cinematic Reels" section. mp4/facebook default to Reels (true) unless
+   *  explicitly set to false; youtube/vimeo/drive default to the normal grid
+   *  unless explicitly set to true. */
   displayAsReel?: boolean;
 
   beforeImage?: string;
@@ -137,6 +142,44 @@ export interface Project {
 }
 
 export const projects: Project[] = [
+  {
+    // ---- Facebook video kept in the normal grid (with the YouTube videos),
+    // NOT in Reels, via displayAsReel: false ----
+    id: 'scabies-awareness-health-video',
+
+    title: 'Scabies Awareness — Health Education Video',
+
+    description:
+      'A health-awareness video explaining scabies (খোসপাঁচড়া) symptoms, prevention, and treatment guidance for general audiences.',
+
+    longDescription:
+      'An educational health-awareness edit covering scabies symptoms (intense itching, small red bumps, spread between family members), prevention tips (keeping clothing/towels/bedding clean, not sharing personal items), and guidance to seek proper medical advice rather than self-medicating.',
+
+    video: {
+      type: 'facebook',
+      src: 'https://www.facebook.com/reel/2641211649628889/',
+      aspect: '9 / 16',
+    },
+    displayAsReel: false,
+
+    category: 'Health Awareness',
+
+    client: 'Personal Project',
+
+    software: ['Adobe Premiere Pro'],
+
+    duration: '5:30',
+
+    date: '2026-08-12',
+
+    tags: ['Health Awareness', 'Education', 'Facebook', 'Bangla'],
+
+    featured: true,
+
+    published: true,
+
+    platform: 'Facebook',
+  },
   {
     id: 'patricia-marsh-tax-relief-scam',
 
@@ -154,7 +197,6 @@ export const projects: Project[] = [
     video: {
       type: 'drive',
       src: '1G0uzu185WtYIUU6rsZrhSySnmhtxlcu7',
-      // 👉 Same note as above — adjust if this one crops too.
       aspect: '16 / 9',
     },
 
@@ -200,6 +242,7 @@ export const projects: Project[] = [
       'Final Delivery',
     ],
   },
+  
   {
     id: 'kuakata-tour-2026',
     title: 'cinamatic travel reel',
@@ -580,8 +623,6 @@ export const projects: Project[] = [
     video: {
       type: 'drive',
       src: '1yp6v2WxCz8O5w3J13DjwZOrMFmgQgbXJ',
-      // 👉 If this still crops in the player, change to the video's real
-      // export ratio (check the .mp4 file's resolution before uploading).
       aspect: '16 / 9',
     },
 
@@ -709,6 +750,7 @@ export const categories: string[] = [
   'Dangerous Animals',
   'Talking Head',
   'Podcast',
+  'Health Awareness',
   'Commercial',
   'YouTube',
   'Short Form',
